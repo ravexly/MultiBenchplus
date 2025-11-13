@@ -1,2 +1,2 @@
-# MultiBench-
+# MultiBench++
 MultiBench++ code
