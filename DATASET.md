@@ -232,3 +232,9 @@ This document outlines the datasets used, including their sources, content descr
 * **Data Source and Content:** E-MNIST (handwritten letters/digits) paired with simultaneously recorded EEG brain signals.
 * **Feature Extraction:** Following [this repo](https://github.com/MrLinNing/MemristorLSM). E-MNIST encoded with `CNN`; EEG signals encoded with `LSTM`.
 * **Data Splits:** Extracted sequentially: **468** training (70%), **104** validation (15%), and **130** test (15%).
+
+### MILK10k
+* **Data Source and Content:** MILK10k dataset containing paired clinical and dermoscopic skin lesion images with comprehensive clinical metadata and histopathology-confirmed diagnoses.
+* **Link:** [Official Site](https://challenge.isic-archive.com/data/#milk10k)
+* **Feature Extraction:** Paired clinical and dermoscopic images encoded with CNNEncoder; tabular clinical metadata (age, sex, anatomical site, skin tone) encoded as normalized feature vectors.
+* **Data Splits:** Extracted sequentially: **3659** training (70%), **780** validation (15%), and **801** test (15%).
