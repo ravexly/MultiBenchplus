@@ -58,7 +58,7 @@ class Cub(Dataset):
 
 
         self.split = split
-        self.indices = self._make_split_indices()  # 长度为 10*图片数
+        self.indices = self._make_split_indices() 
         self.n_classes = len(set(self.labels))
 
     # ----------------------------------------------------------
@@ -129,7 +129,7 @@ class Cub(Dataset):
             print(f"Warning: Image file not found {img_path}. Using a placeholder.")
             img = torch.zeros((3, 256, 256)) # Placeholder
 
-        caption = self.sentences[caption_idx] # 返回原始字符串
+        caption = self.sentences[caption_idx] 
         
         return img, caption, label
 
@@ -165,7 +165,7 @@ def get_loader(
 ):
     print("Loading CUB Dataset (7:1.5:1.5 split)...")
 
-    # 定义图像变换
+
     transform = transforms.Compose([
         transforms.Resize((256, 256)),
         transforms.ToTensor(),
@@ -176,7 +176,7 @@ def get_loader(
     val_ds = Cub(root=root, download=download, split="val", transform=transform)
     test_ds = Cub(root=root, download=download, split="test", transform=transform)
 
-    # --- 新增：初始化 Tokenizer ---
+
     try:
         tokenizer = BertTokenizer.from_pretrained(bert_model_path)
     except Exception as e:

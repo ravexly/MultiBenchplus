@@ -39,7 +39,6 @@ def get_loader(data_folder="../../data/BRCA/", view_list=[1,2,3], batch_size=128
     random.seed(10)
     random.shuffle(datasets)
     
-    # 划分数据集
     test_split = total_len // 5      # 20%
     val_split = total_len // 4       # 25%
     
@@ -50,8 +49,6 @@ def get_loader(data_folder="../../data/BRCA/", view_list=[1,2,3], batch_size=128
     train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=train_shuffle, num_workers=num_workers,drop_last=True)
     val_loader = DataLoader(val_data, batch_size=batch_size, shuffle=False, num_workers=num_workers,drop_last=True)
     test_loader = DataLoader(test_data, batch_size=batch_size, shuffle=False, num_workers=num_workers,drop_last=True)
-    
-    # 统计类别数量
     unique_labels = np.unique(labels)
     n_classes = len(unique_labels)
     

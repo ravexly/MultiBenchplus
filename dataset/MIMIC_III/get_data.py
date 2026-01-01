@@ -10,20 +10,7 @@ sys.path.append(os.getcwd())
 sys.path.append(os.path.dirname(os.path.dirname(os.getcwd())))
 
 def get_loader(task=7, batch_size=40, num_workers=4, train_shuffle=True, imputed_path='../../data/MIMIC_III/im.pk', flatten_time_series=False):
-    """
-    获取 MIMIC-III 多模态任务的 DataLoader。
-
-    Args:
-        task (int): 任务索引。-1 为死亡预测，其它为 icd9 标签索引。
-        batch_size (int): 每批大小。
-        num_workers (int): 加载进程数。
-        train_shuffle (bool): 是否对训练集打乱。
-        imputed_path (str): im.pk 文件路径。
-        flatten_time_series (bool): 是否扁平化时间序列模态。
-
-    Returns:
-        train_loader, val_loader, test_loader, n_classes
-    """
+   
     import pickle
     with open(imputed_path, 'rb') as f:
         datafile = pickle.load(f)
@@ -36,7 +23,7 @@ def get_loader(task=7, batch_size=40, num_workers=4, train_shuffle=True, imputed
     X_s[np.isinf(X_s)] = 0
     X_s[np.isnan(X_s)] = 0
 
-    # 归一化
+
     X_s_avg = np.average(X_s, axis=0)
     X_s_std = np.std(X_s, axis=0)
     X_t_avg = np.average(X_t, axis=(0, 1))
@@ -51,7 +38,7 @@ def get_loader(task=7, batch_size=40, num_workers=4, train_shuffle=True, imputed
         X_t = X_t.reshape(len(X_t), -1)
 
     if task < 0:
-        # 死亡预测任务
+
         y = datafile['adm_labels_all'][:, 1].copy()
         admlbl = datafile['adm_labels_all']
         for i in range(len(y)):
@@ -68,7 +55,7 @@ def get_loader(task=7, batch_size=40, num_workers=4, train_shuffle=True, imputed
             else:
                 y[i] = 0
     else:
-        # icd9 分类任务
+
         y = datafile['y_icd9'][:, task]
 
     X_s = torch.tensor(X_s, dtype=torch.float32)
@@ -88,7 +75,7 @@ def get_loader(task=7, batch_size=40, num_workers=4, train_shuffle=True, imputed
     val_loader = DataLoader(val_data, batch_size=batch_size, shuffle=False, num_workers=num_workers)
     test_loader = DataLoader(test_data, batch_size=batch_size, shuffle=False, num_workers=num_workers)
 
-    # 统计样本信息
+
     num_classes = len(torch.unique(y))
 
     with open("samples.txt", "w") as f:

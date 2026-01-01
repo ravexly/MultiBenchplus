@@ -99,7 +99,6 @@ def get_loader(
             ) for split in ['train', 'valid', 'test']
         }
 
-        # 样本数量统计
         train_len = len(datasets['train'])
         val_len = len(datasets['valid'])
         test_len = len(datasets['test'])

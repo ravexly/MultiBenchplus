@@ -37,7 +37,7 @@ class BimodalDataset(Dataset):
         uid = self.samples[idx]
         text_feat = torch.tensor(self.text_data[uid], dtype=torch.float32)
         audio_feat = torch.tensor(self.audio_data[uid], dtype=torch.float32)
-        label = torch.tensor(self.label_dict[uid], dtype=torch.long)  # 类别索引
+        label = torch.tensor(self.label_dict[uid], dtype=torch.long) 
         return audio_feat, text_feat, label
 
 

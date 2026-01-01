@@ -53,7 +53,7 @@ def get_loader(batch_size=8, num_workers=4):
 
     all_samples = labels_df["data"].tolist()
 
-    # 固定划分
+
     test_samples = all_samples[0:70]
     val_samples = all_samples[70:80]
     train_samples = all_samples[80:]
@@ -77,16 +77,16 @@ def get_loader(batch_size=8, num_workers=4):
     val_loader = DataLoader(val_set, batch_size=batch_size, shuffle=False, num_workers=num_workers)
     test_loader = DataLoader(test_set, batch_size=batch_size, shuffle=False, num_workers=num_workers)
 
-    # 写入样本信息
+
     with open("samples.txt", "w") as f:
         f.write(f"Total: {len(all_samples)}\n")
         f.write(f"Train: {len(train_set)}\n")
         f.write(f"Val: {len(val_set)}\n")
         f.write(f"Test: {len(test_set)}\n")
 
-    return train_loader,test_loader, test_loader, 3  # 3 类分类任务
+    return train_loader,test_loader, test_loader, 3  
 
-# 测试用例
+
 if __name__ == '__main__':
     train_loader, test_loader, n_classes = get_loader(batch_size=4)
     print("训练集 DataLoader:")

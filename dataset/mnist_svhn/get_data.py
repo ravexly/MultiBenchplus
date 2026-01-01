@@ -4,11 +4,11 @@ from torch.utils.data import Dataset, DataLoader
 import torchvision
 from torchvision import datasets, transforms
 
-# 忽略下载日志
+
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-# ------------- MNISTSVHN 数据集类 -------------
+
 class MNISTSVHN(Dataset):
 
 

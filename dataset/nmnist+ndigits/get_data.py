@@ -47,7 +47,7 @@ def parse_args():
 
 def create_stratified_split_datasets_emulated(img_dataset, aud_dataset, options, split_ratios=(0.7, 0.15, 0.15)):
     """
-    <<< 仿照 MNISTSVHN 的 rand_match_on_idx 逻辑实现 >>>
+
     """
     NUM_CLASSES = 10 
     

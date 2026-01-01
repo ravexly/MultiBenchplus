@@ -100,7 +100,6 @@ def get_loader(batch_size=40, num_workers=1, shuffle=True, root_dir="../../data/
 
 if __name__ == "__main__":
     train_loader, val_loader, test_loader, n_classes = get_loader()
-    print("训练集 DataLoader:")
     for batch in train_loader:
         print(batch[0].shape, batch[1].shape, batch[2].shape)
         break

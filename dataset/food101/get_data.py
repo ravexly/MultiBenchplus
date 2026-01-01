@@ -149,7 +149,7 @@ if __name__ == '__main__':
             num_workers=4
         )
         
-        print(f"\n✅ Successfully created data loaders.")
+        print(f"\n Successfully created data loaders.")
         print("-" * 30)
 
         # Test the train_loader to see the new format
@@ -169,6 +169,6 @@ if __name__ == '__main__':
         print(f"Test loader batches: {len(test_loader)}")
 
     except FileNotFoundError as e:
-        print(f"❌ Error: A required file or directory was not found: {e}")
+        print(f" Error: A required file or directory was not found: {e}")
     except ImportError:
-        print("❌ Error: 'transformers' library not found. Please install it using: pip install transformers")
+        print(" Error: 'transformers' library not found. Please install it using: pip install transformers")

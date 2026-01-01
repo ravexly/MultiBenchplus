@@ -19,18 +19,17 @@ class METMemeDataset(Dataset):
             self.label_annotations_df = pd.read_csv(csv_file_label, encoding='ISO-8859-1')
         self.label_annotations_df.dropna(axis=1, how='all', inplace=True)
 
-        # 基于 'file_name' 合并两个 DataFrame，确保数据对齐
+      
         merged_data = pd.merge(self.text_annotations_df, self.label_annotations_df, on='file_name', how='inner')
         
         merged_data.dropna(inplace=True)
         
-        # 仅保留需要的列以提高效率
+
         self.annotations = merged_data[['file_name', 'text', 'sentiment category']]
 
         self.root_dir = root_dir
         self.transform = transform
         
-        # 动态计算类别数量
         sentiment_labels = self.annotations['sentiment category'].apply(lambda x: int(str(x).split('(')[0]))
         self.num_classes = len(sentiment_labels.unique())
 
@@ -48,19 +47,18 @@ class METMemeDataset(Dataset):
                 image = self.transform(image)
         except FileNotFoundError:
             print(f"warning:{img_path}")
-            # 创建一个占位符张量，使其更健壮
+  
             image = torch.zeros((3, 224, 224))
 
         text = row['text']
-        # 确保文本是字符串类型
+
         if not isinstance(text, str):
             text = ""
 
-        # 提取 'sentiment category' 标签并将其转换为从 0 开始的索引
-        msentiment_label = row['sentiment category']
-        msentiment = int(msentiment_label.split('(')[0]) - 1  # 转换为 0-based
 
-        # 将标签转换为张量，以便在collate_fn中进行堆叠
+        msentiment_label = row['sentiment category']
+        msentiment = int(msentiment_label.split('(')[0]) - 1  
+
         label = torch.tensor(msentiment, dtype=torch.long)
             
         return image, text, label
@@ -76,7 +74,7 @@ def get_loader(
     val_split=0.1
 ):
    
-    # 1. 初始化BERT分词器
+
     tokenizer = BertTokenizer.from_pretrained(bert_model_path)
 
     transform = transforms.Compose([
@@ -116,7 +114,6 @@ def get_loader(
     except IOError as e:
         print(f" 'samples.txt': {e}")
 
-    # 2. 定义新的collate_fn来处理文本分词和数据打包
     def custom_collate_fn(batch):
 
         images, texts, labels = zip(*batch)
@@ -131,10 +128,8 @@ def get_loader(
             return_tensors='pt'
         )
         
-        # 按要求返回一个列表
         return [images, encoded_text, labels]
 
-    # 3. 创建使用新collate_fn的DataLoader
     train_loader = DataLoader(
         train_dataset, batch_size=batch_size, shuffle=True, 
         num_workers=num_workers, drop_last=True, collate_fn=custom_collate_fn

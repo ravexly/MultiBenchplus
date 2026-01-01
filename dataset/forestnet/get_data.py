@@ -106,7 +106,7 @@ def get_loader(root_dir='../../data/ForestNetDataset',
     返回 train_loader, val_loader, test_loader, n_classes
     并把样本数量写入 samples.txt
     """
-    # 1. 定义统一的 transform
+   
     transform = transforms.Compose([
         transforms.Resize((image_size, image_size)),
         transforms.ToTensor(),
@@ -114,7 +114,7 @@ def get_loader(root_dir='../../data/ForestNetDataset',
                              std=[0.229, 0.224, 0.225])
     ])
 
-    # 2. 构建数据集
+
     train_dataset = ForestDataset(mode='train', root_dir=root_dir,
                                   transform=transform, types=types)
     val_dataset   = ForestDataset(mode='val',   root_dir=root_dir,
@@ -122,7 +122,7 @@ def get_loader(root_dir='../../data/ForestNetDataset',
     test_dataset  = ForestDataset(mode='test',  root_dir=root_dir,
                                   transform=transform, types=types)
 
-    # 3. 构建 DataLoader
+ 
     train_loader = DataLoader(train_dataset,
                               batch_size=batch_size,
                               shuffle=True,
@@ -139,10 +139,10 @@ def get_loader(root_dir='../../data/ForestNetDataset',
                              num_workers=num_workers,
                              drop_last=True)
 
-    # 4. 类别数
+
     n_classes = len(train_dataset.label_to_int)
 
-    # 5. 写出样本数量
+
     with open("samples.txt", "w") as f:
         f.write(f"Train: {len(train_dataset)}\n")
         f.write(f"Validation: {len(val_dataset)}\n")
@@ -152,7 +152,7 @@ def get_loader(root_dir='../../data/ForestNetDataset',
     return train_loader, val_loader, test_loader, n_classes
 
 
-# ===== 使用示例 =====
+
 if __name__ == '__main__':
     tr_loader, va_loader, te_loader, cls = get_loader(batch_size=8)
     print(f"num_classes = {cls}")

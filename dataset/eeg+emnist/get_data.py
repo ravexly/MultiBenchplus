@@ -37,27 +37,31 @@ class DatasetFromTensors(Dataset):
 def parse_args():
 
     parser = argparse.ArgumentParser(description="EEG-EMNIST Multimodal Data Loading")
-    
-    # --- 通用参数 ---
-    parser.add_argument('--epochs', type=int, default=100, help='训练轮数')
-    parser.add_argument('--lr', type=float, default=1e-3, help='学习率')
-    parser.add_argument('--batch', type=int, default=24, help='批处理大小')
-    parser.add_argument('--seed', type=int, default=123, help='随机种子')
-    parser.add_argument('--cuda', type=str, default='cuda:0', help='使用的CUDA设备')
+
+    parser.add_argument('--epochs', type=int, default=100, help='number of training epochs')
+    parser.add_argument('--lr', type=float, default=1e-3, help='learning rate')
+    parser.add_argument('--batch', type=int, default=24, help='mini-batch size')
+    parser.add_argument('--seed', type=int, default=123, help='random seed')
+    parser.add_argument('--cuda', type=str, default='cuda:0', help='CUDA device to use')
     parser.add_argument('--gpu_id', type=int, default=1, help='GPU ID')
-    parser.add_argument('--data_num', type=str, default="data_26", choices=["data_10", "data_26"], help='使用10个还是26个字母类别')
+    parser.add_argument('--data_num', type=str, default="data_26", choices=["data_10", "data_26"],
+                        help='use 10 or 26 letter classes')
 
-    # --- 数据处理参数 ---
-    parser.add_argument('--enlarge_eeg_train', type=int, default=1, help='EEG训练集数据增强因子 (已弃用，为兼容性保留)')
-    parser.add_argument('--enlarge_eeg_test', type=int, default=1, help='EEG测试集数据增强因子 (已弃用，为兼容性保留)')
-    parser.add_argument('--eeg_std', type=float, default=0.0, help='EEG数据增强中的噪声标准差 (已弃用，为兼容性保留)')
-    parser.add_argument('--center_crop', type=int, default=28, help='E-MNIST图像中心裁剪尺寸')
-    parser.add_argument('--max_spikes', type=int, default=20, help='脉冲化转换时允许的最大脉冲数')
-    parser.add_argument('--emnist_window', type=int, default=50, help='E-MNIST脉冲化转换的时间窗口')
+    parser.add_argument('--enlarge_eeg_train', type=int, default=1,
+                        help='EEG training-set augmentation factor (deprecated, kept for compatibility)')
+    parser.add_argument('--enlarge_eeg_test', type=int, default=1,
+                        help='EEG test-set augmentation factor (deprecated, kept for compatibility)')
+    parser.add_argument('--eeg_std', type=float, default=0.0,
+                        help='noise std for EEG augmentation (deprecated, kept for compatibility)')
+    parser.add_argument('--center_crop', type=int, default=28,
+                        help='center-crop size for E-MNIST images')
+    parser.add_argument('--max_spikes', type=int, default=20,
+                        help='maximum number of spikes allowed during spike conversion')
+    parser.add_argument('--emnist_window', type=int, default=50,
+                        help='time window for E-MNIST spike conversion')
 
-    # --- (已弃用) 为兼容性保留的参数 ---
-    parser.add_argument('--in_class', type=str, default='', help='已弃用')
-    parser.add_argument('--out_class', type=str, default='', help='已弃用')
+    parser.add_argument('--in_class', type=str, default='', help='deprecated')
+    parser.add_argument('--out_class', type=str, default='', help='deprecated')
     
     args = parser.parse_args()
     return args
@@ -68,10 +72,10 @@ def data_generate(options):
 
     NUM_CLASSES = 26 if options.data_num == "data_26" else 10
     
-    # --- Step 1: 加载并统一所有数据到一个数据池 ---
+
     print("--- Step 1: Loading and unifying all data ---")
     
-    # EEG 数据
+
     eeg_mat_data = scipy.io.loadmat('../../datasets/eeg/t5.2019.05.08/singleLetters.mat')
     letters = [chr(ord('a') + i) for i in range(NUM_CLASSES)]
     data_list = [eeg_mat_data[f'neuralActivityCube_{letter}'] for letter in letters]
@@ -79,7 +83,7 @@ def data_generate(options):
     eeg_data_all = torch.FloatTensor(np.concatenate(data_list, axis=0))
     eeg_labels_all = torch.LongTensor(np.concatenate(labels_list, axis=0))
     
-    # E-MNIST 数据
+
     transform = transforms.Compose([
         transforms.Resize(options.center_crop), transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))
     ])
@@ -92,7 +96,7 @@ def data_generate(options):
         
     emn_data_all = SpikingEMNIST(emn_data_all_raw, options.emnist_window, options.max_spikes)
 
-    # --- Step 2: 按类别整理数据 ---
+
     print("\n--- Step 2: Organizing data by class ---")
     eeg_by_class = [[] for _ in range(NUM_CLASSES)]
     for i in range(len(eeg_data_all)):
@@ -102,11 +106,11 @@ def data_generate(options):
         
     emn_by_class = [[] for _ in range(NUM_CLASSES)]
     for data, label in emn_data_all:
-        label = label - 1 # EMNIST 标签是 1-26, 转换为 0-25
+        label = label - 1 
         if 0 <= label < NUM_CLASSES:
              emn_by_class[label].append(data)
 
-    # --- Step 3: 数据配对与分层划分 (70% Train, 15% Val, 15% Test) ---
+
     print("\n--- Step 3: Pairing data and performing stratified split ---")
     train_samples, val_samples, test_samples = [], [], []
 
@@ -127,7 +131,7 @@ def data_generate(options):
         val_samples.extend([(eeg, emn, c) for eeg, emn in paired_data[train_end:val_end]])
         test_samples.extend([(eeg, emn, c) for eeg, emn in paired_data[val_end:]])
 
-    # --- Step 4: 创建最终的 Dataset 和 DataLoader ---
+
     print("\n--- Step 4: Creating final datasets and dataloaders ---")
     
     def build_dataloader(samples, batch_size, shuffle):
@@ -149,9 +153,7 @@ def data_generate(options):
     print("\nData loading and splitting complete.")
     return train_loader, val_loader, test_loader
 
-# ===================================================================
-# 3. 主加载器函数
-# ===================================================================
+
 
 def get_loader():
     """

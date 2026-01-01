@@ -20,11 +20,11 @@ def create_collate_fn(tokenizer):
         
 
         encoded_inputs = tokenizer.batch_encode_plus(
-            list(reports),          # 转换成列表
-            padding='longest',      # 填充到当前批次中的最长长度
-            truncation=True,        # 截断过长的文本
-            max_length=512,         # 你可以设定的最大长度
-            return_tensors='pt'     # 返回PyTorch张量
+            list(reports),         
+            padding='longest',     
+            truncation=True,      
+            max_length=512,         
+            return_tensors='pt'     
         )
         
    
