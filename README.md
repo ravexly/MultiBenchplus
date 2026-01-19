@@ -32,7 +32,7 @@ ProjectRoot/
 └── ...
 ```
 
-### 2\. Running Experiments
+#### 2\. Running Experiments
 
 To reproduce the reported results, navigate to the dataset-specific directory within `exper/` and execute the python script.
 
@@ -45,7 +45,8 @@ cd exper/iemocap/
 # Run the experiment script
 python exper.py
 ```
-
+### Encoders
+For the Bert model, download bert-base-uncased ([Google Drive Link](https://drive.google.com/file/d/1ivh-3aHtoqRMwVN4ZOPvPm59pFP93-hD/view)) and place it in the root folder bert-base-uncased/.
 
 ### Acknowledgements
 
