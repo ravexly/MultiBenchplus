@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dataset Documentation | MultiBench++</title>
+    <link rel="stylesheet" href="styles.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">MultiBench<span class="highlight">++</span></a>
+            <div class="nav-links">
+                <a href="index.html#about">About</a>
+                <a href="index.html#datasets">Datasets</a>
+                <a href="index.html#code">Code</a>
+                <a href="index.html#citation">Citation</a>
+                <a href="https://github.com/ravexly/MultiBenchplus" target="_blank" class="github-link"><i
+                        class="fab fa-github"></i> GitHub</a>
+            </div>
+            <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+        </nav>
+    </header>
+
+    <section class="dataset-doc-hero">
+        <div class="container">
+            <h1>Multimodal Datasets Documentation</h1>
+            <p class="subtitle">This document outlines the datasets used, including their sources, content descriptions,
+                feature extraction methods, and data split statistics.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <!-- Overview Stats -->
+            <div class="doc-overview">
+                <div class="overview-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">39</span>
+                        <span class="stat-label">Datasets</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">6</span>
+                        <span class="stat-label">Domains</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">10+</span>
+                        <span class="stat-label">Modalities</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== EMOTION & SENTIMENT ==================== -->
+            <div class="doc-section" id="emotion">
+                <h2>Emotion & Sentiment</h2>
+
+                <div class="dataset-doc-card">
+                    <h3>MELD (Multimodal EmotionLines Dataset)</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> A large-scale dataset for emotion recognition in
+                            conversations. It contains over 13,000 utterances from the TV show <em>Friends</em>, with
+                            audio, video, and text.</li>
+                        <li><strong>Link:</strong> <a href="https://github.com/declare-lab/MELD" target="_blank">GitHub
+                                Repository</a></li>
+                        <li><strong>Feature Extraction:</strong> (Not specified in source)</li>
+                        <li><strong>Data Splits:</strong> The official split is used, containing <strong>9,989</strong>
+                            training, <strong>1,109</strong> validation, and <strong>2,610</strong> test utterances.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>IEMOCAP</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> The Interactive Emotional Dyadic Motion Capture
+                            (IEMOCAP) database is a popular dataset for emotion recognition, containing approximately 12
+                            hours of audiovisual data from ten actors.</li>
+                        <li><strong>Link:</strong> <a href="https://sail.usc.edu/iemocap/" target="_blank">Official
+                                Site</a></li>
+                        <li><strong>Feature Extraction:</strong> We follow <a
+                                href="https://github.com/soujanyaporia/multimodal-sentiment-analysis/tree/master?tab=readme-ov-file"
+                                target="_blank">this repository</a> to preprocess the features.</li>
+                        <li><strong>Data Splits:</strong> The official split is used: <strong>5,810</strong> training
+                            and <strong>1,623</strong> test utterances.
+                            <ul>
+                                <li><em>Note:</em> Since the official split does not include a dedicated validation set,
+                                    we reuse the test set as the validation set.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>CH-SIMS</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> A fine-grained single- and multi-modal sentiment
+                            analysis dataset in Chinese. It contains over 2,200 short videos with unimodal and
+                            multimodal annotations.</li>
+                        <li><strong>Link:</strong> <a href="https://github.com/thuiar/MMSA" target="_blank">GitHub
+                                Repository</a></li>
+                        <li><strong>Feature Extraction:</strong> We use the pre-extracted features provided by the
+                            dataset without any additional modifications.</li>
+                        <li><strong>Data Splits:</strong> The official split is used: <strong>1,368</strong> training,
+                            <strong>456</strong> validation, and <strong>457</strong> test utterances.</li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>CH-SIMSv2</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> An extended version of CH-SIMS containing over
+                            2,200 short videos with unimodal and multimodal annotations.</li>
+                        <li><strong>Link:</strong> <a href="https://thuiar.github.io/sims.github.io/chsims"
+                                target="_blank">Project Page</a></li>
+                        <li><strong>Feature Extraction:</strong> We use the pre-extracted features provided by the
+                            dataset without any additional modifications.</li>
+                        <li><strong>Data Splits:</strong> The official split is used: <strong>2,722</strong> training,
+                            <strong>647</strong> validation, and <strong>1,034</strong> test utterances.</li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>MVSA-Single</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> A Multi-View Sentiment Analysis dataset containing
+                            image-text posts from Twitter. The "Single" variant contains posts where the sentiment label
+                            is consistent across annotators.</li>
+                        <li><strong>Link:</strong> <a href="https://www.kaggle.com/datasets/vincemarcs/mvsasingle"
+                                target="_blank">Kaggle Dataset</a></li>
+                        <li><strong>Feature Extraction:</strong> We follow <a
+                                href="https://github.com/facebookresearch/mmbt" target="_blank">MMBT</a> to prepare the
+                            splits. Images are encoded using <code>ResNet</code>, and tweet text is encoded using
+                            <code>BERT</code>.</li>
+                        <li><strong>Data Splits:</strong> The official split is used: <strong>1,555</strong> training,
+                            <strong>518</strong> validation, and <strong>519</strong> test utterances.</li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>Twitter2015</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> Originating from SemEval tasks, these datasets
+                            were extended for multimodal aspect-based sentiment analysis, pairing tweets with relevant
+                            images.</li>
+                        <li><strong>Link:</strong> <a href="https://archive.org/details/twitterstream"
+                                target="_blank">Archive</a></li>
+                        <li><strong>Feature Extraction:</strong> A <code>ResNet</code> is used to encode the image
+                            component, and a <code>BERT</code> model is used to encode the text.</li>
+                        <li><strong>Data Splits:</strong> The official split is used: <strong>3,179</strong> training,
+                            <strong>1,122</strong> validation, and <strong>1,037</strong> test utterances.</li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>Twitter1517</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> Extended dataset for multimodal aspect-based
+                            sentiment analysis.</li>
+                        <li><strong>Link:</strong> <a href="https://github.com/code-chendl/HFIR" target="_blank">GitHub
+                                Repository</a></li>
+                        <li><strong>Feature Extraction:</strong> A <code>ResNet</code> is used to encode the image
+                            component, and a <code>BERT</code> model is used to encode the text.</li>
+                        <li><strong>Data Splits:</strong> We adopt a 7:1:2 split (Seed: 42): <strong>3,270</strong>
+                            training, <strong>467</strong> validation, and <strong>935</strong> test utterances.</li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>MOSEI</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> CMU Multimodal Opinion Sentiment and Emotion
+                            Intensity dataset with 23,000+ video clips covering sentiment and emotion analysis.</li>
+                        <li><strong>Link:</strong> <a href="https://github.com/CMU-MultiComp-Lab/MultimodalSDK"
+                                target="_blank">GitHub Repository</a></li>
+                        <li><strong>Feature Extraction:</strong> Standard CMU MultiComp Lab SDK pipeline for audio,
+                            video, and text features.</li>
+                        <li><strong>Data Splits:</strong> Official split: <strong>16,216</strong> training,
+                            <strong>1,871</strong> validation, and <strong>4,659</strong> test.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ==================== SOCIAL MEDIA ==================== -->
+            <div class="doc-section" id="social">
+                <h2>Social Media</h2>
+
+                <div class="dataset-doc-card">
+                    <h3>MAMI</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> A dataset for Misogynistic Meme Detection,
+                            containing over 10,000 image-text memes annotated for misogyny and other categories.</li>
+                        <li><strong>Link:</strong> <a
+                                href="https://github.com/MIND-Lab/SemEval2022-Task-5-Multimedia-Automatic-Misogyny-Identification-MAMI-"
+                                target="_blank">GitHub Repository</a></li>
+                        <li><strong>Feature Extraction:</strong> A <code>ResNet</code> is used to encode the image
+                            component, and a <code>BERT</code> model is used to encode the text.</li>
+                        <li><strong>Data Splits:</strong> The official split is used: <strong>9,000</strong> training,
+                            <strong>1,000</strong> validation, and <strong>1,000</strong> test utterances.</li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>Memotion</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> A dataset for analyzing emotions in memes. It
+                            contains 10,000 memes annotated for sentiment and three types of emotions (humor, sarcasm,
+                            motivation).</li>
+                        <li><strong>Link:</strong> <a
+                                href="https://www.kaggle.com/datasets/williamscott701/memotion-dataset-7k"
+                                target="_blank">Kaggle Dataset</a></li>
+                        <li><strong>Feature Extraction:</strong> A <code>ResNet</code> is used to encode the image
+                            component, and a <code>BERT</code> model is used to encode the text.</li>
+                        <li><strong>Data Splits:</strong> We adopt an 8:1:1 split (Seed: 42): <strong>5,465</strong>
+                            training, <strong>683</strong> validation, and <strong>683</strong> test utterances.</li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>MUTE</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> Targets troll-like behavior in image/text posts to
+                            detect harmful content.</li>
+                        <li><strong>Link:</strong> <a href="https://github.com/eftekhar-hossain/MUTE-AACL22"
+                                target="_blank">GitHub Repository</a></li>
+                        <li><strong>Feature Extraction:</strong> A <code>ResNet</code> is used to encode the image
+                            component, and a <code>BERT</code> model is used to encode the text.</li>
+                        <li><strong>Data Splits:</strong> The official split is used: <strong>3,365</strong> training,
+                            <strong>375</strong> validation, and <strong>416</strong> test utterances.</li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>MultiOFF</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> Focuses on identifying offensive content and its
+                            target in image/text posts.</li>
+                        <li><strong>Link:</strong> <a
+                                href="https://github.com/bharathichezhiyan/Multimodal-Meme-Classification-Identifying-Offensive-Content-in-Image-and-Text"
+                                target="_blank">GitHub Repository</a></li>
+                        <li><strong>Feature Extraction:</strong> A <code>ResNet</code> is used to encode the image
+                            component, and a <code>BERT</code> model is used to encode the text.</li>
+                        <li><strong>Data Splits:</strong> The official split is used: <strong>445</strong> training,
+                            <strong>149</strong> validation, and <strong>149</strong> test utterances.</li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>MET-Meme (Chinese)</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> A dataset for multimodal metaphor detection in
+                            memes (Chinese version).</li>
+                        <li><strong>Link:</strong> <a
+                                href="https://github.com/liaolianfoka/MET-Meme-A-Multi-modal-Meme-Dataset-Rich-in-Metaphors"
+                                target="_blank">GitHub Repository</a></li>
+                        <li><strong>Feature Extraction:</strong> A <code>ResNet</code> is used to encode the image
+                            component, and a <code>BERT</code> model is used to encode the text.</li>
+                        <li><strong>Data Splits:</strong> We adopt a 7:1:2 split (Seed: 42): <strong>1,609</strong>
+                            training, <strong>229</strong> validation, and <strong>461</strong> test utterances.</li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>MET-Meme (English)</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> A dataset for multimodal metaphor detection in
+                            memes (English version).</li>
+                        <li><strong>Link:</strong> <a
+                                href="https://github.com/liaolianfoka/MET-Meme-A-Multi-modal-Meme-Dataset-Rich-in-Metaphors"
+                                target="_blank">GitHub Repository</a></li>
+                        <li><strong>Feature Extraction:</strong> A <code>ResNet</code> is used to encode the image
+                            component, and a <code>BERT</code> model is used to encode the text.</li>
+                        <li><strong>Data Splits:</strong> We adopt a 7:1:2 split (Seed: 42): <strong>737</strong>
+                            training, <strong>105</strong> validation, and <strong>211</strong> test utterances.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ==================== REMOTE SENSING ==================== -->
+            <div class="doc-section" id="remote-sensing">
+                <h2>Remote Sensing</h2>
+
+                <div class="dataset-doc-card">
+                    <h3>Houston2013</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> Provides HSI and LiDAR data over the University of
+                            Houston campus, covering 15 land use classes (IEEE GRSS Data Fusion Contest).</li>
+                        <li><strong>Link:</strong> <a href="https://machinelearning.ee.uh.edu/?page_id=459"
+                                target="_blank">Project Page</a></li>
+                        <li><strong>Feature Extraction:</strong> Following <a
+                                href="https://github.com/songyz2019/rs-fusion-datasets" target="_blank">this repo</a>.
+                            HSI data is processed by the <code>conv_hsi</code> encoder; LiDAR data is processed by the
+                            <code>conv_dsm</code> encoder.</li>
+                        <li><strong>Data Splits:</strong> Official split: <strong>2,817</strong> training and
+                            <strong>12,182</strong> test.
+                            <ul>
+                                <li><em>Note:</em> Test set is reused as validation set.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>Houston2018</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> A more complex dataset covering 20 urban land use
+                            classes (IEEE GRSS Data Fusion Contest).</li>
+                        <li><strong>Link:</strong> <a
+                                href="https://machinelearning.ee.uh.edu/2018-ieee-grss-data-fusion-challenge-fusion-of-multispectral-lidar-and-hyperspectral-data/"
+                                target="_blank">Project Page</a></li>
+                        <li><strong>Feature Extraction:</strong> Following <a
+                                href="https://github.com/songyz2019/rs-fusion-datasets" target="_blank">this repo</a>.
+                            HSI data processed by <code>conv_hsi</code>; LiDAR processed by <code>conv_dsm</code>.</li>
+                        <li><strong>Data Splits:</strong> Official split: <strong>18,750</strong> training and
+                            <strong>2,000,160</strong> test.
+                            <ul>
+                                <li><em>Note:</em> Test set is reused as validation set.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>MUUFL Gulfport</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> HSI and LiDAR data collected over the University
+                            of Southern Mississippi, Gulfport campus (11 urban land use classes).</li>
+                        <li><strong>Link:</strong> <a href="https://github.com/GatorSense/MUUFLGulfport"
+                                target="_blank">GitHub Repository</a></li>
+                        <li><strong>Feature Extraction:</strong> Following <a
+                                href="https://github.com/songyz2019/rs-fusion-datasets" target="_blank">this repo</a>.
+                            HSI data processed by <code>conv_hsi</code>; LiDAR processed by <code>conv_dsm</code>.</li>
+                        <li><strong>Data Splits:</strong> Official split: <strong>1,100</strong> training and
+                            <strong>52,587</strong> test.
+                            <ul>
+                                <li><em>Note:</em> Test set is reused as validation set.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>Trento</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> Covers a rural area south of Trento, Italy.
+                            Combines HSI with LiDAR-derived DSM (6 classes).</li>
+                        <li><strong>Link:</strong> <a
+                                href="https://github.com/tyust-dayu/Trento/tree/b4afc449ce5d6936ddc04fe267d86f9f35536afd"
+                                target="_blank">GitHub Repository</a></li>
+                        <li><strong>Feature Extraction:</strong> Following <a
+                                href="https://github.com/songyz2019/rs-fusion-datasets" target="_blank">this repo</a>.
+                            HSI processed by <code>conv_hsi</code>; LiDAR processed by <code>conv_dsm</code>.</li>
+                        <li><strong>Data Splits:</strong> Official split: <strong>600</strong> training and
+                            <strong>29,614</strong> test.
+                            <ul>
+                                <li><em>Note:</em> Test set is reused as validation set.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>Berlin</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> Co-registered HSI and SAR data for Berlin, Germany
+                            (8 urban land cover classes).</li>
+                        <li><strong>Link:</strong> <a
+                                href="https://gfzpublic.gfz-potsdam.de/pubman/faces/ViewItemFullPage.jsp?itemId=item_1480927_5"
+                                target="_blank">Dataset Source</a></li>
+                        <li><strong>Feature Extraction:</strong> Following <a
+                                href="https://github.com/songyz2019/rs-fusion-datasets" target="_blank">this repo</a>.
+                            HSI processed by <code>conv_hsi</code>. SAR data is processed by a <code>ResNet</code>
+                            encoder.</li>
+                        <li><strong>Data Splits:</strong> Official split: <strong>2,820</strong> training and
+                            <strong>461,851</strong> test.
+                            <ul>
+                                <li><em>Note:</em> Test set is reused as validation set.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>MDAS (Augsburg)</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> Multi-sensor data for urban area classification in
+                            Augsburg, Germany, featuring HSI and SAR imagery.</li>
+                        <li><strong>Link:</strong> <a href="https://github.com/songyz2019/rs-fusion-datasets"
+                                target="_blank">GitHub Repository</a></li>
+                        <li><strong>Feature Extraction:</strong> Following <a
+                                href="https://github.com/songyz2019/rs-fusion-datasets" target="_blank">this repo</a>.
+                            HSI uses <code>conv_hsi</code>; SAR data uses <code>ResNet</code>.</li>
+                        <li><strong>Data Splits:</strong> Official split: <strong>761</strong> training and
+                            <strong>77,533</strong> test.
+                            <ul>
+                                <li><em>Note:</em> Test set is reused as validation set.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>ForestNet</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> A dataset for wildfire prevention using Sentinel-2
+                            imagery, topography (DSM), and weather data.</li>
+                        <li><strong>Link:</strong> <a href="https://github.com/spott/ForestNet" target="_blank">GitHub
+                                Repository</a></li>
+                        <li><strong>Feature Extraction:</strong> <code>ResNet</code> for satellite imagery,
+                            <code>ResNet</code> for topography, MLP for tabular weather data.</li>
+                        <li><strong>Data Splits:</strong> Official split: <strong>1,616</strong> training,
+                            <strong>473</strong> validation, and <strong>668</strong> test.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ==================== HEALTHCARE ==================== -->
+            <div class="doc-section" id="healthcare">
+                <h2>Healthcare & Medical</h2>
+
+                <div class="dataset-doc-card">
+                    <h3>TCGA-BRCA</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> TCGA Breast Cancer (BRCA) multi-omics dataset
+                            (gene expression, DNA methylation, copy number variation) for survival prediction.</li>
+                        <li><strong>Link:</strong> <a href="https://github.com/txWang/MOGONET" target="_blank">GitHub
+                                Repository</a></li>
+                        <li><strong>Feature Extraction:</strong> Each tabular omics modality is encoded via an
+                            independent fully-connected linear layer.</li>
+                        <li><strong>Data Splits:</strong> Extracted sequentially: <strong>657</strong> training (75%),
+                            <strong>43</strong> validation (5%), and <strong>175</strong> test (20%).</li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>TCGA</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> General TCGA multi-omics dataset for survival
+                            prediction (dataset selection via IntegrAO).</li>
+                        <li><strong>Link:</strong> <a href="https://www.cancer.gov/ccg/access-data" target="_blank">NCI
+                                Access</a></li>
+                        <li><strong>Feature Extraction:</strong> Each tabular omics modality is encoded via an
+                            independent fully-connected linear layer.</li>
+                        <li><strong>Data Splits:</strong> Extracted sequentially: <strong>169</strong> training (60%),
+                            <strong>76</strong> validation (25%), and <strong>61</strong> test (20%).</li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>ROSMAP</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> Multi-omics data from post-mortem brain tissue for
+                            Alzheimer's disease research.</li>
+                        <li><strong>Link:</strong> <a href="https://github.com/txWang/MOGONET" target="_blank">GitHub
+                                Repository</a></li>
+                        <li><strong>Feature Extraction:</strong> Each tabular omics modality is encoded via an
+                            independent Identity mapping encoder.</li>
+                        <li><strong>Data Splits:</strong> Extracted sequentially: <strong>194</strong> training (60%),
+                            <strong>87</strong> validation (25%), and <strong>70</strong> test (20%).</li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>SIIM-ISIC</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> Dermoscopic images of skin lesions with
+                            patient-level metadata for melanoma classification (2020 Kaggle challenge).</li>
+                        <li><strong>Link:</strong> <a
+                                href="https://www.kaggle.com/competitions/siim-isic-melanoma-classification/data"
+                                target="_blank">Kaggle Competition</a></li>
+                        <li><strong>Feature Extraction:</strong> <code>ResNet</code> encoder for images; Identity
+                            mapping encoder for tabular metadata.</li>
+                        <li><strong>Data Splits:</strong> We adopt an 8:1:1 split (Seed: 42): <strong>26,502</strong>
+                            training, <strong>3,312</strong> validation, and <strong>3,312</strong> test.</li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>Derm7pt</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> Multiclass skin lesion classification based on the
+                            7-point checklist. Contains dermoscopic images and semi-quantitative clinical features.</li>
+                        <li><strong>Link:</strong> <a href="https://www.kaggle.com/datasets/menakamohanakumar/derm7pt"
+                                target="_blank">Kaggle Dataset</a></li>
+                        <li><strong>Feature Extraction:</strong> Images encoded with <code>CNNEncoder</code>; tabular
+                            clinical features encoded with Identity mapping.</li>
+                        <li><strong>Data Splits:</strong> Official split: <strong>413</strong> training,
+                            <strong>203</strong> validation, and <strong>395</strong> test.</li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>GAMMA</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> Glaucoma grading dataset containing color fundus
+                            images and stereo-pairs of disc photos.</li>
+                        <li><strong>Link:</strong> <a href="https://zenodo.org/records/15119049" target="_blank">Zenodo
+                                Record</a></li>
+                        <li><strong>Feature Extraction:</strong> Both fundus images and stereo-pair images are encoded
+                            using a <code>CNNEncoder</code>.</li>
+                        <li><strong>Data Splits:</strong> Extracted sequentially: <strong>20</strong> training (20%),
+                            <strong>10</strong> validation (10%), and <strong>70</strong> test (70%).</li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>MIMIC-III</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> ICU database with structured data (lab results,
+                            vitals) and clinical notes for mortality prediction.</li>
+                        <li><strong>Link:</strong> <a href="https://physionet.org/content/mimiciii/1.4/"
+                                target="_blank">PhysioNet</a></li>
+                        <li><strong>Feature Extraction:</strong> Modality encoded by
+                            <code>TimeSeriesTransformerEncoder</code> and Identity mapping.</li>
+                        <li><strong>Data Splits:</strong> Extracted sequentially: <strong>24,462</strong> training
+                            (75%), <strong>1,631</strong> validation (5%), and <strong>6,523</strong> test (20%).</li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>MIMIC-CXR</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> Chest X-ray images and corresponding radiology
+                            reports.</li>
+                        <li><strong>Link:</strong> <a href="https://physionet.org/content/mimic-cxr-jpg/2.1.0/"
+                                target="_blank">PhysioNet</a></li>
+                        <li><strong>Feature Extraction:</strong> <code>ResNet</code> encoder for X-rays;
+                            <code>BERT</code> for radiology reports.</li>
+                        <li><strong>Data Splits:</strong> Official split (training capped at 5k, Seed: 42):
+                            <strong>5,000</strong> training, <strong>2,942</strong> validation, and
+                            <strong>5,117</strong> test.</li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>eICU</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> Multi-center ICU database with high-granularity
+                            vital sign data and clinical notes.</li>
+                        <li><strong>Link:</strong> <a href="https://eicu-crd.mit.edu/" target="_blank">eICU Website</a>
+                        </li>
+                        <li><strong>Feature Extraction:</strong> All modalities are encoded using the identity mapping.
+                        </li>
+                        <li><strong>Data Splits:</strong> Hierarchical partition (Seed: 42): <strong>5,727</strong>
+                            training (~75%), <strong>382</strong> validation (~5%), and <strong>1,528</strong> test
+                            (~20%).</li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>MILK10k</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> MILK10k dataset containing paired clinical and
+                            dermoscopic skin lesion images with comprehensive clinical metadata and
+                            histopathology-confirmed diagnoses.</li>
+                        <li><strong>Link:</strong> <a href="https://challenge.isic-archive.com/data/#milk10k"
+                                target="_blank">Official Site</a></li>
+                        <li><strong>Feature Extraction:</strong> Paired clinical and dermoscopic images encoded with
+                            CNNEncoder; tabular clinical metadata (age, sex, anatomical site, skin tone) encoded as
+                            normalized feature vectors.</li>
+                        <li><strong>Data Splits:</strong> Extracted sequentially: <strong>3,659</strong> training (70%),
+                            <strong>780</strong> validation (15%), and <strong>801</strong> test (15%).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ==================== VISION & MULTIMEDIA ==================== -->
+            <div class="doc-section" id="vision">
+                <h2>Vision & Multimedia</h2>
+
+                <div class="dataset-doc-card">
+                    <h3>MIRFLICKR</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> Images from Flickr with associated user-assigned
+                            tags, used for retrieval and classification.</li>
+                        <li><strong>Link:</strong> <a href="https://press.liacs.nl/mirflickr/" target="_blank">Official
+                                Site</a></li>
+                        <li><strong>Feature Extraction:</strong> <code>ResNet</code> for images; <code>BERT</code> for
+                            textual tags.</li>
+                        <li><strong>Data Splits:</strong> We adopt a 7:1:2 split (Seed: 42): <strong>14,010</strong>
+                            training, <strong>2,001</strong> validation, and <strong>4,004</strong> test.</li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>CUB Image-Caption</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> Detailed bird images with rich, descriptive text
+                            captions.</li>
+                        <li><strong>Link:</strong> <a href="https://github.com/iffsid/mmvae" target="_blank">GitHub
+                                Repository</a></li>
+                        <li><strong>Feature Extraction:</strong> <code>ResNet</code> for images; <code>BERT</code> for
+                            text captions.</li>
+                        <li><strong>Data Splits:</strong> We adopt a 7:1.5:1.5 split (Seed: 2025):
+                            <strong>82,510</strong> training, <strong>17,680</strong> validation, and
+                            <strong>17,690</strong> test.</li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>SUN-RGBD</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> Large-scale dataset for indoor scene understanding
+                            with RGB-D (color and depth) images.</li>
+                        <li><strong>Link:</strong> <a href="https://rgbd.cs.princeton.edu/" target="_blank">Project
+                                Page</a></li>
+                        <li><strong>Feature Extraction:</strong> <code>ResNet</code> for RGB images; similar
+                            <code>ResNet</code> for depth maps.</li>
+                        <li><strong>Data Splits:</strong> Official split: <strong>4,845</strong> training and
+                            <strong>4,659</strong> test.
+                            <ul>
+                                <li><em>Note:</em> Test set is reused as validation set.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>NYUDv2</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> RGB and Depth images of indoor scenes captured
+                            from a Microsoft Kinect.</li>
+                        <li><strong>Link:</strong> <a href="https://cs.nyu.edu/~fergus/datasets/nyu_depth_v2.html"
+                                target="_blank">Official Site</a></li>
+                        <li><strong>Feature Extraction:</strong> <code>ResNet</code> encoder for RGB;
+                            <code>ResNet</code> for depth.</li>
+                        <li><strong>Data Splits:</strong> Official split: <strong>795</strong> training,
+                            <strong>414</strong> validation, and <strong>654</strong> test.</li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>UPMC-Food101</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> Food images paired with ingredient lists.</li>
+                        <li><strong>Link:</strong> <a href="https://www.kaggle.com/datasets/gianmarco96/upmcfood101"
+                                target="_blank">Kaggle Dataset</a></li>
+                        <li><strong>Feature Extraction:</strong> We follow <a
+                                href="https://github.com/facebookresearch/mmbt" target="_blank">MMBT</a> for splits.
+                            <code>ResNet</code> for food images; <code>BERT</code> for ingredient lists.</li>
+                        <li><strong>Data Splits:</strong> Official split: <strong>62,971</strong> training,
+                            <strong>5,000</strong> validation, and <strong>22,715</strong> test.</li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>MNIST-SVHN</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> Synthetic dataset combining MNIST (handwritten
+                            digits) and SVHN (street view house numbers).</li>
+                        <li><strong>Link:</strong> <a href="https://github.com/iffsid/mmvae" target="_blank">GitHub
+                                Repository</a></li>
+                        <li><strong>Feature Extraction:</strong> Flattening operation for MNIST; Simple CNN encoder for
+                            SVHN.</li>
+                        <li><strong>Data Splits:</strong> Official split: <strong>560,680</strong> training and
+                            <strong>100,000</strong> test.
+                            <ul>
+                                <li><em>Note:</em> Test set is reused as validation set.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ==================== NEUROMORPHIC ==================== -->
+            <div class="doc-section" id="neuromorphic">
+                <h2>Neuromorphic</h2>
+
+                <div class="dataset-doc-card">
+                    <h3>N-MNIST + N-TIDIGITS</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> Neuromorphic versions of MNIST (vision) and
+                            TIDIGITS (audio-spoken digits) recorded as event streams.</li>
+                        <li><strong>Link:</strong> <a href="https://github.com/MrLinNing/MemristorLSM"
+                                target="_blank">GitHub Repository</a></li>
+                        <li><strong>Feature Extraction:</strong> Following <a
+                                href="https://github.com/MrLinNing/MemristorLSM" target="_blank">this repo</a>. NMNIST
+                            frames encoded by <code>CNN</code>; NTIDIGITS MFCCs encoded by <code>LSTM</code>.</li>
+                        <li><strong>Data Splits:</strong> Extracted sequentially: <strong>2,835</strong> training (70%),
+                            <strong>603</strong> validation (15%), and <strong>612</strong> test (15%).</li>
+                    </ul>
+                </div>
+
+                <div class="dataset-doc-card">
+                    <h3>E-MNIST + EEG</h3>
+                    <ul class="dataset-details">
+                        <li><strong>Data Source and Content:</strong> E-MNIST (handwritten letters/digits) paired with
+                            simultaneously recorded EEG brain signals.</li>
+                        <li><strong>Link:</strong> <a href="https://github.com/MrLinNing/MemristorLSM"
+                                target="_blank">GitHub Repository</a></li>
+                        <li><strong>Feature Extraction:</strong> Following <a
+                                href="https://github.com/MrLinNing/MemristorLSM" target="_blank">this repo</a>. E-MNIST
+                            encoded with <code>CNN</code>; EEG signals encoded with <code>LSTM</code>.</li>
+                        <li><strong>Data Splits:</strong> Extracted sequentially: <strong>468</strong> training (70%),
+                            <strong>104</strong> validation (15%), and <strong>130</strong> test (15%).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Back to Home -->
+            <div class="back-home">
+                <a href="index.html#datasets" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 MultiBench++. Released under the MIT License.</p>
+            <div class="footer-links">
+                <a href="https://github.com/ravexly/MultiBenchplus">GitHub</a>
+                <a href="#">Hugging Face</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
