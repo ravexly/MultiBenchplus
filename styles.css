@@ -986,3 +986,591 @@ footer .container {
         gap: 2rem;
     }
 }
+
+/* ==================== PARADIGMS SECTION - PERFECT ALIGNMENT TREE ==================== */
+
+/* 1. 基础容器 */
+.fusion-tree {
+    margin: 2rem 0;
+    padding: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text-main);
+}
+
+.tree-root-node {
+    display: none;
+}
+
+.fusion-tree ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* =========== Level 1: 列布局 =========== */
+.tree-level-1 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+/* 每一列的容器 */
+.tree-level-1 > li {
+    flex: 1;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* =========== Level 1 卡片 (Header) =========== */
+.tree-category {
+    background: white;
+    border: 1px solid #d1d5db; 
+    border-radius: 6px;
+    padding: 0.8rem 1rem;
+    text-align: left;
+    width: 100%;
+    
+    /* 间距设定 */
+    margin-bottom: 2rem; 
+    
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.tree-category strong {
+    font-size: 1.1rem;
+    color: var(--primary-dark);
+    font-family: 'Outfit', sans-serif;
+    display: block;
+    margin-bottom: 0.2rem;
+}
+
+.category-desc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+/* 连接线：Header -> Level 2 */
+.tree-category::after {
+    content: '';
+    position: absolute;
+    left: 1.5rem;
+    
+    height: 2rem; 
+    bottom: -2rem; 
+    
+    width: 2px;
+    background: #e1e4e8;
+    z-index: 1;
+}
+
+
+/* =========== Level 2: 列表容器 =========== */
+.tree-level-2 {
+    position: relative;
+    padding-left: 0;
+    margin-top: 0; 
+}
+
+/* [左侧长脊柱] */
+.tree-level-2::before {
+    content: '';
+    position: absolute;
+    left: 1.5rem; 
+    top: 0; 
+    bottom: 1rem; /* 稍微留点余地，具体遮挡靠子项的遮罩 */
+    width: 2px;
+    background: #e1e4e8;
+    z-index: 1;
+}
+
+/* =========== Level 2: 子项 (Item) =========== */
+.tree-level-2 > li {
+    position: relative;
+    padding-left: 3rem; 
+    margin-bottom: 1rem;
+}
+
+/* [关键修复 1] 横向连接线：固定高度，不再居中 */
+.tree-level-2 > li::after {
+    content: '';
+    position: absolute;
+    left: 1.5rem; 
+    width: 1.5rem; 
+    
+    /* 这里改成了 1.3rem，正好对齐标题的中心，不再受高度影响 */
+    top: 1.3rem; 
+    
+    height: 2px;
+    background: #e1e4e8;
+}
+
+/* [关键修复 2] 遮罩处理：同步改为 1.3rem */
+/* 作用：遮住最后一个子项脊柱线多余出来的部分 */
+.tree-level-2 > li:last-child::before {
+    content: '';
+    position: absolute;
+    left: 1.5rem;
+    
+    /* 从横线的位置开始往下遮 */
+    top: 1.3rem; 
+    
+    bottom: 0; 
+    width: 2px;
+    background: white; 
+    z-index: 2; 
+}
+
+
+/* =========== Level 2 卡片样式 =========== */
+.tree-level-2 > li strong {
+    display: block;
+    background: white;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    
+    /* 配合 top: 1.3rem 的计算逻辑： */
+    /* Padding(0.6*2) + LineHeight(0.95*1.5) ≈ 2.6rem 高度 */
+    /* 所以 1.3rem 正好是中间 */
+    padding: 0.6rem 0.8rem;
+    line-height: 1.5; 
+    
+    font-size: 0.95rem;
+    color: var(--text-main);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    transition: all 0.2s;
+}
+
+.tree-level-2 > li strong:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* 代码胶囊 */
+.method-list {
+    padding-left: 0.2rem;
+}
+
+.method-list code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--primary-color);
+    background: rgba(0, 70, 140, 0.04);
+    border: 1px solid transparent;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    display: inline-block;
+    margin-right: 0.3rem;
+    margin-bottom: 0.2rem;
+}
+
+/* =========== 底部统计 =========== */
+.paradigm-summary {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #f0f0f0;
+}
+
+.summary-item { text-align: center; }
+.summary-number {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    font-family: 'Outfit', sans-serif;
+    margin-bottom: 0.2rem;
+}
+.summary-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .tree-level-1 {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .tree-level-1 > li {
+        width: 100%;
+        min-width: auto;
+    }
+}
+
+
+
+/* =========== 针对内容不平衡的优化 =========== */
+
+/* 1. 左右两列（第1和第3个）：保持紧凑 */
+.tree-level-1 > li:nth-child(1),
+.tree-level-1 > li:nth-child(3) {
+    flex: 1;          /* 权重为1 */
+    max-width: 320px; /* 限制最大宽度，防止太宽显得空旷 */
+}
+
+/* 2. 中间一列（第2个）：给予更多空间 */
+.tree-level-1 > li:nth-child(2) {
+    flex: 1.4;        /* 权重为1.4，让它比旁边宽40% */
+    max-width: 460px; /* 允许它更宽，这样长代码就不容易换行 */
+}
+
+/* 3. 针对中间列的特殊紧凑处理 */
+/* 减少中间列子项的底部间距，让它看起来不那么松散 */
+.tree-level-1 > li:nth-child(2) .tree-level-2 > li {
+    margin-bottom: 0.8rem; /* 原来是 1rem */
+}
+
+/* 4. 全局代码胶囊瘦身 */
+/* 稍微改小一点字号和边距，能极大节省空间 */
+.method-list code {
+    font-size: 0.7rem;      /* 原来是 0.75rem */
+    padding: 0.15rem 0.3rem; /* 稍微收紧内边距 */
+    letter-spacing: -0.02em; /* 字距微调，让长单词更紧凑 */
+}
+
+/* ==================== CODE SECTION ENHANCED STYLES ==================== */
+
+/* Architecture Overview Grid */
+.code-architecture-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.arch-card {
+    padding: 1rem 1rem;
+    border-radius: 8px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.arch-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+}
+
+.arch-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.arch-primary {
+    background: linear-gradient(135deg, #f0f7ff 0%, #e6f2ff 100%);
+    border: 1px solid #b3d7ff;
+}
+
+.arch-secondary {
+    background: linear-gradient(135deg, #fff5f0 0%, #ffe6e0 100%);
+    border: 1px solid #ffccb3;
+}
+
+.arch-tertiary {
+    background: linear-gradient(135deg, #f0fff4 0%, #e0ffe8 100%);
+    border: 1px solid #b3ffcc;
+}
+
+.arch-quaternary {
+    background: linear-gradient(135deg, #fff0f5 0%, #ffe0eb 100%);
+    border: 1px solid #ffb3d1;
+}
+
+.arch-card h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.3rem;
+    color: var(--primary-dark);
+}
+
+.arch-card p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* Component Showcase Section - Clean Design */
+.code-components-section {
+    margin-top: 1.5rem;
+}
+
+.component-showcase-clean {
+    background: white;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 1.25rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.component-showcase-clean:hover {
+    box-shadow: var(--shadow-sm);
+}
+
+.component-header-clean {
+    background: white;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.component-title-clean {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.component-number-clean {
+    width: 28px;
+    height: 28px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.component-title-clean h4 {
+    font-size: 1.1rem;
+    margin: 0 0 0.2rem 0;
+    color: var(--primary-dark);
+    font-weight: 600;
+}
+
+.component-path {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.component-body-clean {
+    padding: 1.25rem;
+}
+
+.component-desc {
+    color: var(--text-main);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    font-size: 0.9rem;
+}
+
+.method-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.method-category strong {
+    display: block;
+    color: var(--primary-dark);
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.method-category ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.method-category li {
+    padding: 0.5rem 0;
+    color: var(--text-main);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.method-category li code {
+    background: rgba(0, 70, 140, 0.08);
+    color: var(--primary-color);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+/* Dataset Tags */
+.dataset-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.dataset-tag {
+    background: var(--bg-light);
+    color: var(--text-main);
+    padding: 0.35rem 0.7rem;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease;
+}
+
+.dataset-tag:hover {
+    background: var(--secondary-color);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.dataset-tag-more {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.35rem 0.7rem;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid var(--primary-color);
+}
+
+/* Encoder Grid Clean */
+.encoder-grid-clean {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.encoder-card-clean {
+    background: var(--bg-light);
+    padding: 1rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.encoder-card-clean:hover {
+    background: white;
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.encoder-header-clean {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.65rem;
+}
+
+.encoder-header-clean strong {
+    color: var(--primary-dark);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.encoder-header-clean code {
+    background: white;
+    color: var(--text-muted);
+    padding: 0.2rem 0.45rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    border: 1px solid var(--border-color);
+}
+
+.encoder-card-clean p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--text-main);
+    line-height: 1.5;
+}
+
+/* Evaluation Grid Clean */
+.eval-grid-clean {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+}
+
+.eval-card-clean {
+    background: var(--bg-light);
+    padding: 1rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.eval-card-clean:hover {
+    background: white;
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.eval-card-clean strong {
+    display: block;
+    color: var(--primary-dark);
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.eval-card-clean p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--text-main);
+    line-height: 1.5;
+}
+
+.eval-card-clean code {
+    background: white;
+    color: var(--text-muted);
+    padding: 0.15rem 0.35rem;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    border: 1px solid var(--border-color);
+}
+
+/* Responsive Design for Code Section */
+@media (max-width: 1024px) {
+    .encoder-grid-clean {
+        grid-template-columns: 1fr;
+    }
+    
+    .eval-grid-clean {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .code-architecture-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .component-title-clean {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .dataset-tags {
+        flex-direction: column;
+    }
+    
+    .dataset-tag {
+        text-align: center;
+    }
+}

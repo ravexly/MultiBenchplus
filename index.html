@@ -19,6 +19,7 @@
             <div class="nav-links">
                 <a href="#about">About</a>
                 <a href="#datasets">Datasets</a>
+                <a href="#paradigms">Paradigms</a>
                 <a href="#code">Code</a>
                 <a href="#usage">Usage</a>
                 <a href="#citation">Citation</a>
@@ -575,23 +576,249 @@
         </div>
     </section>
 
-    <section id="code" class="section">
+
+
+    
+    <section id="paradigms" class="section">
+        <div class="container">
+            <h2 class="section-title">Paradigms</h2>
+            <p class="section-intro">MultiBench++ implements a comprehensive taxonomy of multimodal fusion approaches. The following tree structure organizes fusion methods by their integration stage and architectural characteristics.</p>
+    
+            <div class="fusion-tree">
+                <div class="tree-root-node">
+                    <strong>Multimodal Fusion Methods</strong>
+                </div>
+                
+                <ul class="tree-level-1">
+                    <li>
+                        <div class="tree-category">
+                            <strong>Early Fusion</strong>
+                            <span class="category-desc">— Feature-level integration</span>
+                        </div>
+                        <ul class="tree-level-2">
+                            <li>
+                                <strong>Concatenation</strong>
+                                <div class="method-list">
+                                    <code>Concat</code>
+                                    <code>ConcatEarly</code>
+                                </div>
+                            </li>
+                            <li>
+                                <strong>Tensor Fusion</strong>
+                                <div class="method-list">
+                                    <code>TensorFusion</code>
+                                    <code>LowRankTensorFusion</code>
+                                </div>
+                            </li>
+                            <li>
+                                <strong>Multiplicative Interactions</strong>
+                                <div class="method-list">
+                                    <code>MultiplicativeInteractions2Modal</code>
+                                    <code>MultiplicativeInteractions3Modal</code>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <div class="tree-category">
+                            <strong>Intermediate Fusion</strong>
+                            <span class="category-desc">— Joint representation learning</span>
+                        </div>
+                        <ul class="tree-level-2">
+                            <li>
+                                <strong>Transformer-Based</strong>
+                                <div class="method-list">
+                                    <code>EarlyFusionTransformer</code>
+                                    <code>LateFusionTransformer</code>
+                                </div>
+                            </li>
+                            <li>
+                                <strong>Attention Mechanisms</strong>
+                                <div class="method-list">
+                                    <code>CrossAttentionFusion</code>
+                                    <code>CrossAttentionConcatFusion</code>
+                                    <code>MultiModalCrossAttentionFusion</code>
+                                    <code>MultiModalCrossAttentionConcatFusion</code>
+                                </div>
+                            </li>
+                            <li>
+                                <strong>Hierarchical Attention</strong>
+                                <div class="method-list">
+                                    <code>HierarchicalAttentionMultiToOne</code>
+                                    <code>HierarchicalAttentionOneToMulti</code>
+                                </div>
+                            </li>
+                            <li>
+                                <strong>Non-Local Gating</strong>
+                                <div class="method-list">
+                                    <code>NLgate</code>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <div class="tree-category">
+                            <strong>Late Fusion</strong>
+                            <span class="category-desc">— Decision-level integration</span>
+                        </div>
+                        <ul class="tree-level-2">
+                            <li>
+                                <strong>Confidence-Based</strong>
+                                <div class="method-list">
+                                    <code>MultimodalLateFusionClf</code>
+                                </div>
+                            </li>
+                            <li>
+                                <strong>Evidence Theory</strong>
+                                <div class="method-list">
+                                    <code>TMC (Trusted Multi-view Classification)</code>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+    
+            <div class="paradigm-summary">
+                <div class="summary-item">
+                    <div class="summary-number">15+</div>
+                    <div class="summary-label">Fusion Methods Implemented</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-number">3</div>
+                    <div class="summary-label">Main Fusion Paradigms</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-number">10</div>
+                    <div class="summary-label">Method Categories</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <section id="code" class="section section-alt">
         <div class="container">
             <h2 class="section-title">Code</h2>
-            <p class="section-intro">MultiBench++ features a modular architecture designed for easy extension.</p>
+            <p class="section-intro">MultiBench++ features a modular architecture designed for easy extension. All code is available on <a href="https://github.com/ravexly/MultiBenchplus" target="_blank" class="inline-link">GitHub</a>.</p>
 
-            <div class="code-modules">
-                <div class="module-item">
-                    <h3>Encoders</h3>
-                    <p>Pre-built encoders for various modalities including ResNet for images, BERT for text, and specialized encoders for medical and remote sensing data.</p>
+            <!-- Architecture Overview -->
+            <div class="code-architecture-grid">
+                <div class="arch-card arch-primary">
+                    <h3>39 Datasets</h3>
+                    <p>Across 6 domains</p>
                 </div>
-                <div class="module-item">
-                    <h3>Fusion Methods</h3>
-                    <p>Comprehensive fusion strategies including Late Fusion, TMC (Trusted Multi-view Classification), LMF, and other state-of-the-art techniques.</p>
+                <div class="arch-card arch-secondary">
+                    <h3>15+ Fusion Methods</h3>
+                    <p>Early, Intermediate & Late</p>
                 </div>
-                <div class="module-item">
-                    <h3>Training Pipeline</h3>
-                    <p>Flexible training structures and experimental configurations that allow for rapid prototyping and benchmarking across datasets.</p>
+                <div class="arch-card arch-tertiary">
+                    <h3>Multiple Encoders</h3>
+                    <p>BERT, ResNet & more</p>
+                </div>
+                <div class="arch-card arch-quaternary">
+                    <h3>3 Evaluation Modes</h3>
+                    <p>Performance, Robustness, Complexity</p>
+                </div>
+            </div>
+
+            <!-- Core Components -->
+            <div class="code-components-section">
+                <!-- Component 1: Dataset Loaders -->
+                <div class="component-showcase-clean">
+                    <div class="component-header-clean">
+                        <div class="component-title-clean">
+                            <span class="component-number-clean">01</span>
+                            <div>
+                                <h4>Dataset Loaders</h4>
+                                <span class="component-path">dataset/*/get_data.py</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="component-body-clean">
+                        <p class="component-desc">Unified data loading interface for all 39 datasets. Each dataset has its own loader with consistent API, making it easy to switch between datasets.</p>
+                        <div class="dataset-tags">
+                            <span class="dataset-tag">MAMI</span>
+                            <span class="dataset-tag">MELD</span>
+                            <span class="dataset-tag">IEMOCAP</span>
+                            <span class="dataset-tag">MIMIC-III</span>
+                            <span class="dataset-tag">SIIM-ISIC</span>
+                            <span class="dataset-tag">Houston2013</span>
+                            <span class="dataset-tag">ForestNet</span>
+                            <span class="dataset-tag">SUN-RGBD</span>
+                            <span class="dataset-tag-more">+31 more</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Component 2: Encoders -->
+                <div class="component-showcase-clean">
+                    <div class="component-header-clean">
+                        <div class="component-title-clean">
+                            <span class="component-number-clean">02</span>
+                            <div>
+                                <h4>Unimodal Encoders</h4>
+                                <span class="component-path">encoders/</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="component-body-clean">
+                        <p class="component-desc">Pre-built encoders for extracting features from different modalities. Supports both pre-trained and custom architectures.</p>
+                        <div class="encoder-grid-clean">
+                            <div class="encoder-card-clean">
+                                <div class="encoder-header-clean">
+                                    <strong>BERT Encoder</strong>
+                                    <code>bert.py</code>
+                                </div>
+                                <p>Pre-trained BERT-base-uncased for text encoding. Supports fine-tuning and feature extraction modes.</p>
+                            </div>
+                            <div class="encoder-card-clean">
+                                <div class="encoder-header-clean">
+                                    <strong>Image Encoder</strong>
+                                    <code>image.py</code>
+                                </div>
+                                <p>ResNet, VGG, and custom CNN architectures for visual feature extraction.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Component 3: Training & Evaluation -->
+                <div class="component-showcase-clean">
+                    <div class="component-header-clean">
+                        <div class="component-title-clean">
+                            <span class="component-number-clean">03</span>
+                            <div>
+                                <h4>Training & Evaluation</h4>
+                                <span class="component-path">training_structures/ & eval_scripts/</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="component-body-clean">
+                        <p class="component-desc">Flexible training pipelines and comprehensive evaluation metrics for benchmarking multimodal models.</p>
+                        <div class="eval-grid-clean">
+                            <div class="eval-card-clean">
+                                <strong>Training Structures</strong>
+                                <p><code>Supervised_Learning_V2.py</code> provides standard supervised training loop with support for gradient blending, multi-task learning, automatic checkpointing and early stopping.</p>
+                            </div>
+                            <div class="eval-card-clean">
+                                <strong>Performance Metrics</strong>
+                                <p><code>performance.py</code> includes accuracy, F1, AUC, and domain-specific metrics like C-index for survival and mIoU for segmentation.</p>
+                            </div>
+                            <div class="eval-card-clean">
+                                <strong>Robustness Testing</strong>
+                                <p><code>robustness.py</code> evaluates missing modality handling, noise injection, adversarial testing, and cross-dataset generalization.</p>
+                            </div>
+                            <div class="eval-card-clean">
+                                <strong>Complexity Analysis</strong>
+                                <p><code>complexity.py</code> measures FLOPs, parameter counting, memory profiling, inference speed, and efficiency benchmarking.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -603,41 +830,42 @@
 
             <div class="code-content-grid">
                 <div class="code-block-wrapper structure-block">
-                    <h3>Project Tree</h3>
+                    <h3>Project Hierarchy</h3>
                     <pre><code>MultiBench++/
-├── data/              # Dataset files
-├── dataset/           # Dataset loaders (40 datasets)
-├── encoders/          # Modality encoders
-│   ├── bert.py        # BERT text encoder
-│   └── image.py       # ResNet image encoder
-├── fusions/           # Fusion methods
-│   ├── common_fusions.py
-│   ├── late_fusion.py
-│   └── tmc.py         # Trusted Multi-view Classification
-├── training_structures/ # Training pipelines
-├── eval_scripts/      # Evaluation scripts
-└── exper/             # Experiment configs</code></pre>
+├── datasets/             # Loaders for 10+ domains (MAMI, etc.)
+├── encoders/             # Unimodal backbones (BERT, ResNet)
+├── fusions/              # 15+ fusion implementations
+│   ├── early_fusion.py   # Concatenation & Tensor Fusion
+│   ├── attention.py      # Cross-modal Attention
+│   └── late_fusion.py    # Evidence Theory & Decision fusion
+├── training_structures/  # Pipelines (GradientBlend, MMD)
+├── objective_functions/  # Loss functions & metrics
+├── configs/              # Hyperparameter configs
+├── main.py               # Main experiment entry point
+└── requirements.txt      # Dependencies</code></pre>
                 </div>
 
                 <div class="code-block-wrapper structure-block">
                     <h3>Quick Start</h3>
-                    <pre><code># 1. Clone the repository
-git clone https://github.com/ravexly/MultiBenchplus.git
-cd MultiBenchplus
-
-# 2. Install dependencies
+                    <pre><code># 1. Environment Setup
+conda create -n multibench python=3.9
+conda activate multibench
 pip install -r requirements.txt
-
-# 3. Download BERT model (for text-based experiments)
-# Place bert-base-uncased/ in the project root
-
-# 4. Run an experiment
-cd exper/MAMI/
-python baseline.py</code></pre>
+# 2. Data Preparation
+# Download or place data in ./data
+bash scripts/download_data.sh
+# 3. Run Experiments
+# Example: Train Tensor Fusion on MAMI
+python main.py --dataset MAMI --fusion tensor_fusion
+# 4. Evaluation
+python eval.py --ckpt checkpoints/best.pth</code></pre>
                 </div>
             </div>
         </div>
     </section>
+
+
+
 
     <section id="citation" class="section section-alt">
         <div class="container">
