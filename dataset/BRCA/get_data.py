@@ -8,7 +8,7 @@ from torch.utils.data import DataLoader
 sys.path.append(os.getcwd())
 sys.path.append(os.path.dirname(os.path.dirname(os.getcwd())))
 
-def get_loader(data_folder="../../data/BRCA/", view_list=[1,2,3], batch_size=128, num_workers=1, train_shuffle=True):
+def get_loader(data_folder="../../../MultiBench/data/BRCA/", view_list=[1,2,3], batch_size=128, num_workers=1, train_shuffle=True):
     num_view = len(view_list)
     
     labels_tr = np.loadtxt(os.path.join(data_folder, "labels_tr.csv"), delimiter=',')

@@ -1,0 +1,5 @@
+Train: 657
+Val: 43
+Test: 175
+Total: 875
+Classes: 5

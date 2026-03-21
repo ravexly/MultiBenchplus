@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-#
-# Copyright (c) Facebook, Inc. and its affiliates.
-# All rights reserved.
-#
-# This source code is licensed under the license found in the
-# LICENSE file in the root directory of this source tree.
-#
 
 import torch
 import torch.nn as nn
@@ -38,12 +30,12 @@ class ImageEncoder(nn.Module):
             self.pool = pool_func((3, 3))
 
     def forward(self, x):
-        # Bx3x224x224 -> Bx2048x7x7 -> Bx2048xN -> BxNx2048
+
         out = self.pool(self.model(x))
         out = torch.flatten(out, start_dim=2)
         out = out.transpose(1, 2).contiguous()
         out = torch.flatten(out, start_dim=1)
-        return out  # BxNx2048
+        return out
 
 
 class ImageClf(nn.Module):
