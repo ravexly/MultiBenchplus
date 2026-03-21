@@ -1,6 +1,3 @@
-这份 README 的修改建议如下。我调整了结构，使 **Baseline** 的运行方式更清晰，并以专业且直观的方式加入了关于 **Encoder** 选取逻辑的 Note。
-
------
 
 # MultiBench++
 
