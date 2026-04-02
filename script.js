@@ -1,86 +1,88 @@
-// Header scroll effect
-const header = document.querySelector('header');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
+(function () {
+    'use strict';
+
+    function updateHeaderState(header) {
+        if (!header) return;
+        header.classList.toggle('scrolled', window.scrollY > 50);
     }
-});
 
-// Mobile menu toggle
-const mobileBtn = document.querySelector('.mobile-menu-btn');
-const navLinks = document.querySelector('.nav-links');
+    function setupMobileMenu(menuButton, navLinks) {
+        if (!menuButton || !navLinks) return;
 
-if (mobileBtn) {
-    mobileBtn.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        const icon = mobileBtn.querySelector('i');
-        if (navLinks.classList.contains('active')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-    });
-}
+        const closeMenu = () => {
+            navLinks.classList.remove('active');
+            menuButton.textContent = 'Menu';
+        };
 
-// Close mobile menu when clicking a link
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        if (mobileBtn) {
-            const icon = mobileBtn.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-    });
-});
+        menuButton.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuButton.textContent = navLinks.classList.contains('active') ? 'Close' : 'Menu';
+        });
 
-// Copy citation
-function copyCitation() {
-    const citationText = document.getElementById('bibtex').innerText;
-    navigator.clipboard.writeText(citationText).then(() => {
-        const btn = document.querySelector('.btn-copy');
-        const originalText = btn.innerHTML;
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+    }
 
-        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-        btn.classList.add('success');
+    function copyCitation() {
+        const citation = document.getElementById('bibtex');
+        const button = document.getElementById('copy-citation-btn');
+        if (!citation || !button) return;
 
-        setTimeout(() => {
-            btn.innerHTML = originalText;
-            btn.classList.remove('success');
-        }, 2000);
-    }).catch(err => {
-        console.error('Failed to copy text: ', err);
-    });
-}
+        navigator.clipboard.writeText(citation.innerText).then(() => {
+            const originalText = button.textContent;
+            button.textContent = 'Copied';
+            button.classList.add('success');
 
-// Accordion functionality for dataset categories
-const accordionHeaders = document.querySelectorAll('.accordion-header');
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.classList.remove('success');
+            }, 1800);
+        }).catch(error => {
+            console.error('Failed to copy citation text:', error);
+        });
+    }
 
-accordionHeaders.forEach(header => {
-    header.addEventListener('click', () => {
-        const accordionItem = header.parentElement;
-        const isActive = accordionItem.classList.contains('active');
+    function setupCitationCopy() {
+        const button = document.getElementById('copy-citation-btn');
+        if (!button) return;
+        button.addEventListener('click', copyCitation);
+    }
 
-        // Optional: Close other accordions (remove this block for multiple open)
-        // document.querySelectorAll('.accordion-item').forEach(item => {
-        //     item.classList.remove('active');
-        // });
+    function setupDatasetAccordion() {
+        const root = document.getElementById('dataset-accordion-root');
+        if (!root) return;
 
-        // Toggle current accordion
-        if (isActive) {
-            accordionItem.classList.remove('active');
-        } else {
-            accordionItem.classList.add('active');
-        }
-    });
-});
+        root.addEventListener('click', (event) => {
+            const header = event.target.closest('.accordion-header');
+            if (!header || !root.contains(header)) return;
 
-// Open the first accordion by default
-const firstAccordion = document.querySelector('.accordion-item');
-if (firstAccordion) {
-    firstAccordion.classList.add('active');
-}
+            const item = header.closest('.accordion-item');
+            if (!item) return;
+
+            const isActive = item.classList.toggle('active');
+            header.setAttribute('aria-expanded', String(isActive));
+        });
+
+        // Keep all sections collapsed by default.
+    }
+
+    function initPage() {
+        setupDatasetAccordion();
+        setupCitationCopy();
+
+        const header = document.querySelector('.site-header');
+        updateHeaderState(header);
+        window.addEventListener('scroll', () => updateHeaderState(header));
+
+        const mobileMenuButton = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        setupMobileMenu(mobileMenuButton, navLinks);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initPage);
+    } else {
+        initPage();
+    }
+})();

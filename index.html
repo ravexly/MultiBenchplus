@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -9,11 +9,11 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
-    <header>
+
+    <header class="site-header">
         <nav class="container">
             <a href="#" class="logo">MultiBench<span class="highlight">++</span></a>
             <div class="nav-links">
@@ -21,24 +21,54 @@
                 <a href="#datasets">Datasets</a>
                 <a href="#paradigms">Paradigms</a>
                 <a href="#code">Code</a>
+                <a href="#leaderboard" class="leaderboard-link">Leaderboard</a>
                 <a href="#usage">Usage</a>
                 <a href="#citation">Citation</a>
-                <a href="https://github.com/ravexly/MultiBenchplus" target="_blank" class="github-link"><i
-                        class="fab fa-github"></i> GitHub</a>
+                <a href="https://github.com/ravexly/MultiBenchplus" target="_blank" class="github-link">GitHub</a>
             </div>
-            <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            <button class="mobile-menu-btn">Menu</button>
         </nav>
     </header>
 
+    <aside class="sidebar-outline">
+        <div class="sidebar-title">On This Page</div>
+        <ul class="sidebar-nav">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#datasets">Datasets</a></li>
+            <li><a href="#dataset-emotion" class="sidebar-sub">Emotion & Sentiment</a></li>
+            <li><a href="#dataset-social" class="sidebar-sub">Social Media</a></li>
+            <li><a href="#dataset-medical" class="sidebar-sub">Healthcare & Medical</a></li>
+            <li><a href="#dataset-rs" class="sidebar-sub">Remote Sensing</a></li>
+            <li><a href="#dataset-vision" class="sidebar-sub">Vision & Multimedia</a></li>
+            <li><a href="#dataset-neuro" class="sidebar-sub">Neuromorphic</a></li>
+            <li><a href="#paradigms">Paradigms</a></li>
+            <li><a href="#code">Code</a></li>
+            <li><a href="#code-overview" class="sidebar-sub">Architecture Overview</a></li>
+            <li><a href="#code-loaders" class="sidebar-sub">Dataset Loaders</a></li>
+            <li><a href="#code-encoders" class="sidebar-sub">Unimodal Encoders</a></li>
+            <li><a href="#code-training" class="sidebar-sub">Training & Evaluation</a></li>
+            <li><a href="#leaderboard">Leaderboard</a></li>
+            <li><a href="#usage">Structure & Usage</a></li>
+            <li><a href="#table-remote-sensing" class="sidebar-sub">Remote Sensing Table</a></li>
+            <li><a href="#table-medical-ai" class="sidebar-sub">Medical AI Table</a></li>
+            <li><a href="#table-affective" class="sidebar-sub">Affective Table</a></li>
+            <li><a href="#table-other" class="sidebar-sub">Other Domains Table</a></li>
+            <li><a href="#citation">Citation</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+
     <section id="hero">
         <div class="container hero-content">
-            <h1>MultiBench<span class="text-primary">++</span></h1>
+            <h1>MultiBench++</h1>
             <p class="subtitle">A Unified and Comprehensive Multimodal Fusion Benchmarking Across Specialized Domains
             </p>
             <div class="hero-buttons">
-                <a href="https://github.com/ravexly/MultiBenchplus" class="btn btn-primary" target="_blank"><i
-                        class="fab fa-github"></i> View Code</a>
-                <a href="#datasets" class="btn btn-secondary">Explore Datasets</a>
+                <a href="https://github.com/ravexly/MultiBenchplus" class="btn btn-primary" target="_blank"> View Code</a>
+                <a href="https://pan.baidu.com/s/11ITMTGO4KCnTLr05dnmThg?pwd=8rc9" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Explore Datasets</a>
             </div>
         </div>
         <div class="hero-bg-pattern"></div>
@@ -49,28 +79,28 @@
             <h2 class="section-title">About the Project</h2>
             <div class="about-grid">
                 <div class="about-card">
-                    <i class="fas fa-layer-group"></i>
+                    
                     <h3>Unified Benchmark</h3>
                     <p>Standardized evaluation across diverse multimodal tasks including emotion recognition,
                         healthcare, and remote sensing.</p>
                 </div>
                 <div class="about-card">
-                    <i class="fas fa-database"></i>
+                    
                     <h3>Extensive Datasets</h3>
-                    <p>Coverage of 39 datasets across various domains, ensuring robust and comprehensive model
-                        assessment.</p>
+                    <p>Coverage of 37 datasets spanning 15+ modalities and 20+ predictive tasks across specialized
+                        domains.</p>
                 </div>
                 <div class="about-card">
-                    <i class="fas fa-code"></i>
+                    
                     <h3>Easy Integration</h3>
                     <p>Modular codebase designed for easy extension, allowing researchers to plug in new models and
                         datasets effortlessly.</p>
                 </div>
                 <div class="about-card">
-                    <i class="fas fa-chart-line"></i>
+                    
                     <h3>Advanced Metrics</h3>
-                    <p>Detailed performance analysis using state-of-the-art evaluation metrics tailored for each
-                        specific domain.</p>
+                    <p>Task-specific evaluation with accuracy, macro-F1, AUPRC, and MSE, reported under a consistent
+                        protocol with multiple random seeds.</p>
                 </div>
             </div>
         </div>
@@ -79,521 +109,25 @@
     <section id="datasets" class="section section-alt">
         <div class="container">
             <h2 class="section-title">Datasets</h2>
-            <p class="section-intro">Explore our comprehensive collection of 39 multimodal datasets across specialized
+            <p class="section-intro">Explore the MULTIBENCH++ suite of 37 multimodal datasets across specialized
                 domains. Click on each category to view the datasets. <a href="datasets.html" class="inline-link">View
-                    full documentation →</a></p>
-
-            <div class="dataset-accordion">
-                <!-- EMOTION & SENTIMENT (8) -->
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <div class="accordion-header-content">
-                            <span class="accordion-title">Emotion & Sentiment</span>
-                            <span class="accordion-count">8 datasets</span>
-                        </div>
-                        <div class="accordion-header-right">
-                            <div class="modality-badges">
-                                <span class="modality-badge">Text</span>
-                                <span class="modality-badge">Audio</span>
-                                <span class="modality-badge">Video</span>
-                            </div>
-                            <i class="fas fa-chevron-down accordion-icon"></i>
-                        </div>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="dataset-grid-compact">
-                            <a href="https://github.com/declare-lab/MELD" target="_blank" class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>MELD</h4>
-                                    <p>A large-scale dataset for emotion recognition in conversations. It contains over
-                                        13,000 utterances from the TV show Friends, with audio, video, and text.</p>
-                                    <div class="card-stats"><span>Train: 9,989</span><span>Val: 1,109</span><span>Test:
-                                            2,610</span></div>
-                                </div>
-                            </a>
-                            <a href="https://sail.usc.edu/iemocap/" target="_blank" class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>IEMOCAP</h4>
-                                    <p>The Interactive Emotional Dyadic Motion Capture (IEMOCAP) database is a popular
-                                        dataset for emotion recognition, containing approximately 12 hours of
-                                        audiovisual data from ten actors.</p>
-                                    <div class="card-stats"><span>Train: 5,810</span><span>Test: 1,623</span></div>
-                                </div>
-                            </a>
-                            <a href="https://github.com/thuiar/MMSA" target="_blank" class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>CH-SIMS</h4>
-                                    <p>A fine-grained single- and multi-modal sentiment analysis dataset in Chinese. It
-                                        contains over 2,200 short videos with unimodal and multimodal annotations.</p>
-                                    <div class="card-stats"><span>Train: 1,368</span><span>Val: 456</span><span>Test:
-                                            457</span></div>
-                                </div>
-                            </a>
-                            <a href="https://thuiar.github.io/sims.github.io/chsims" target="_blank"
-                                class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>CH-SIMSv2</h4>
-                                    <p>An extended version of CH-SIMS containing over 2,200 short videos with unimodal
-                                        and multimodal annotations.</p>
-                                    <div class="card-stats"><span>Train: 2,722</span><span>Val: 647</span><span>Test:
-                                            1,034</span></div>
-                                </div>
-                            </a>
-                            <a href="https://www.kaggle.com/datasets/vincemarcs/mvsasingle" target="_blank"
-                                class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>MVSA-Single</h4>
-                                    <p>A Multi-View Sentiment Analysis dataset containing image-text posts from Twitter.
-                                        The "Single" variant contains posts where the sentiment label is consistent
-                                        across annotators.</p>
-                                    <div class="card-stats"><span>Train: 1,555</span><span>Val: 518</span><span>Test:
-                                            519</span></div>
-                                </div>
-                            </a>
-                            <a href="https://archive.org/details/twitterstream" target="_blank"
-                                class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>Twitter2015</h4>
-                                    <p>Originating from SemEval tasks, these datasets were extended for multimodal
-                                        aspect-based sentiment analysis, pairing tweets with relevant images.</p>
-                                    <div class="card-stats"><span>Train: 3,179</span><span>Val: 1,122</span><span>Test:
-                                            1,037</span></div>
-                                </div>
-                            </a>
-                            <a href="https://github.com/code-chendl/HFIR" target="_blank" class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>Twitter1517</h4>
-                                    <p>Extended dataset for multimodal aspect-based sentiment analysis.</p>
-                                    <div class="card-stats"><span>Train: 3,270</span><span>Val: 467</span><span>Test:
-                                            935</span></div>
-                                </div>
-                            </a>
-                            <a href="https://github.com/CMU-MultiComp-Lab/MultimodalSDK" target="_blank"
-                                class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>MOSEI</h4>
-                                    <p>CMU Multimodal Opinion Sentiment and Emotion Intensity dataset with 23,000+ video
-                                        clips covering sentiment and emotion analysis.</p>
-                                    <div class="card-stats"><span>Train: 16,216</span><span>Val: 1,871</span><span>Test:
-                                            4,659</span></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SOCIAL MEDIA (6) -->
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <div class="accordion-header-content">
-                            <span class="accordion-title">Social Media</span>
-                            <span class="accordion-count">6 datasets</span>
-                        </div>
-                        <div class="accordion-header-right">
-                            <div class="modality-badges">
-                                <span class="modality-badge">Text</span>
-                                <span class="modality-badge">Image</span>
-                            </div>
-                            <i class="fas fa-chevron-down accordion-icon"></i>
-                        </div>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="dataset-grid-compact">
-                            <a href="https://github.com/MIND-Lab/SemEval2022-Task-5-Multimedia-Automatic-Misogyny-Identification-MAMI-"
-                                target="_blank" class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>MAMI</h4>
-                                    <p>A dataset for Misogynistic Meme Detection, containing over 10,000 image-text
-                                        memes annotated for misogyny and other categories.</p>
-                                    <div class="card-stats"><span>Train: 9,000</span><span>Val: 1,000</span><span>Test:
-                                            1,000</span></div>
-                                </div>
-                            </a>
-                            <a href="https://www.kaggle.com/datasets/williamscott701/memotion-dataset-7k"
-                                target="_blank" class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>Memotion</h4>
-                                    <p>A dataset for analyzing emotions in memes. It contains 10,000 memes annotated for
-                                        sentiment and three types of emotions (humor, sarcasm, motivation).</p>
-                                    <div class="card-stats"><span>Train: 5,465</span><span>Val: 683</span><span>Test:
-                                            683</span></div>
-                                </div>
-                            </a>
-                            <a href="https://github.com/eftekhar-hossain/MUTE-AACL22" target="_blank"
-                                class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>MUTE</h4>
-                                    <p>Targets troll-like behavior in image/text posts to detect harmful content.</p>
-                                    <div class="card-stats"><span>Train: 3,365</span><span>Val: 375</span><span>Test:
-                                            416</span></div>
-                                </div>
-                            </a>
-                            <a href="https://github.com/bharathichezhiyan/Multimodal-Meme-Classification-Identifying-Offensive-Content-in-Image-and-Text"
-                                target="_blank" class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>MultiOFF</h4>
-                                    <p>Focuses on identifying offensive content and its target in image/text posts.</p>
-                                    <div class="card-stats"><span>Train: 445</span><span>Val: 149</span><span>Test:
-                                            149</span></div>
-                                </div>
-                            </a>
-                            <a href="https://github.com/liaolianfoka/MET-Meme-A-Multi-modal-Meme-Dataset-Rich-in-Metaphors"
-                                target="_blank" class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>MET-Meme (CN)</h4>
-                                    <p>A dataset for multimodal metaphor detection in memes (Chinese version).</p>
-                                    <div class="card-stats"><span>Train: 1,609</span><span>Val: 229</span><span>Test:
-                                            461</span></div>
-                                </div>
-                            </a>
-                            <a href="https://github.com/liaolianfoka/MET-Meme-A-Multi-modal-Meme-Dataset-Rich-in-Metaphors"
-                                target="_blank" class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>MET-Meme (EN)</h4>
-                                    <p>A dataset for multimodal metaphor detection in memes (English version).</p>
-                                    <div class="card-stats"><span>Train: 737</span><span>Val: 105</span><span>Test:
-                                            211</span></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- HEALTHCARE (10) -->
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <div class="accordion-header-content">
-                            <span class="accordion-title">Healthcare & Medical</span>
-                            <span class="accordion-count">10 datasets</span>
-                        </div>
-                        <div class="accordion-header-right">
-                            <div class="modality-badges">
-                                <span class="modality-badge">Multi-omics</span>
-                                <span class="modality-badge">Image</span>
-                                <span class="modality-badge">Text</span>
-                            </div>
-                            <i class="fas fa-chevron-down accordion-icon"></i>
-                        </div>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="dataset-grid-compact">
-                            <a href="https://github.com/txWang/MOGONET" target="_blank" class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>TCGA-BRCA</h4>
-                                    <p>TCGA Breast Cancer (BRCA) multi-omics dataset (gene expression, DNA methylation,
-                                        copy number variation) for survival prediction.</p>
-                                    <div class="card-stats"><span>Train: 657</span><span>Val: 43</span><span>Test:
-                                            175</span></div>
-                                </div>
-                            </a>
-                            <a href="https://www.cancer.gov/ccg/access-data" target="_blank" class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>TCGA</h4>
-                                    <p>General TCGA multi-omics dataset for survival prediction (dataset selection via
-                                        IntegrAO).</p>
-                                    <div class="card-stats"><span>Train: 169</span><span>Val: 76</span><span>Test:
-                                            61</span></div>
-                                </div>
-                            </a>
-                            <a href="https://github.com/txWang/MOGONET" target="_blank" class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>ROSMAP</h4>
-                                    <p>Multi-omics data from post-mortem brain tissue for Alzheimer's disease research.
-                                    </p>
-                                    <div class="card-stats"><span>Train: 194</span><span>Val: 87</span><span>Test:
-                                            70</span></div>
-                                </div>
-                            </a>
-                            <a href="https://www.kaggle.com/competitions/siim-isic-melanoma-classification/data"
-                                target="_blank" class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>SIIM-ISIC</h4>
-                                    <p>Dermoscopic images of skin lesions with patient-level metadata for melanoma
-                                        classification (2020 Kaggle challenge).</p>
-                                    <div class="card-stats"><span>Train: 26,502</span><span>Val: 3,312</span><span>Test:
-                                            3,312</span></div>
-                                </div>
-                            </a>
-                            <a href="https://www.kaggle.com/datasets/menakamohanakumar/derm7pt" target="_blank"
-                                class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>Derm7pt</h4>
-                                    <p>Multiclass skin lesion classification based on the 7-point checklist. Contains
-                                        dermoscopic images and semi-quantitative clinical features.</p>
-                                    <div class="card-stats"><span>Train: 413</span><span>Val: 203</span><span>Test:
-                                            395</span></div>
-                                </div>
-                            </a>
-                            <a href="https://zenodo.org/records/15119049" target="_blank" class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>GAMMA</h4>
-                                    <p>Glaucoma grading dataset containing color fundus images and stereo-pairs of disc
-                                        photos.</p>
-                                    <div class="card-stats"><span>Train: 20</span><span>Val: 10</span><span>Test:
-                                            70</span></div>
-                                </div>
-                            </a>
-                            <a href="https://physionet.org/content/mimiciii/1.4/" target="_blank"
-                                class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>MIMIC-III</h4>
-                                    <p>ICU database with structured data (lab results, vitals) and clinical notes for
-                                        mortality prediction.</p>
-                                    <div class="card-stats"><span>Train: 24,462</span><span>Val: 1,631</span><span>Test:
-                                            6,523</span></div>
-                                </div>
-                            </a>
-                            <a href="https://physionet.org/content/mimic-cxr-jpg/2.1.0/" target="_blank"
-                                class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>MIMIC-CXR</h4>
-                                    <p>Chest X-ray images and corresponding radiology reports.</p>
-                                    <div class="card-stats"><span>Train: 5,000</span><span>Val: 2,942</span><span>Test:
-                                            5,117</span></div>
-                                </div>
-                            </a>
-                            <a href="https://eicu-crd.mit.edu/" target="_blank" class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>eICU</h4>
-                                    <p>Multi-center ICU database with high-granularity vital sign data and clinical
-                                        notes.</p>
-                                    <div class="card-stats"><span>Train: 5,727</span><span>Val: 382</span><span>Test:
-                                            1,528</span></div>
-                                </div>
-                            </a>
-                            <a href="https://challenge.isic-archive.com/data/#milk10k" target="_blank"
-                                class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>MILK10k</h4>
-                                    <p>MILK10k dataset containing paired clinical and dermoscopic skin lesion images
-                                        with comprehensive clinical metadata and histopathology-confirmed diagnoses.</p>
-                                    <div class="card-stats"><span>Train: 3,659</span><span>Val: 780</span><span>Test:
-                                            801</span></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- REMOTE SENSING (7) -->
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <div class="accordion-header-content">
-                            <span class="accordion-title">Remote Sensing</span>
-                            <span class="accordion-count">7 datasets</span>
-                        </div>
-                        <div class="accordion-header-right">
-                            <div class="modality-badges">
-                                <span class="modality-badge">HSI</span>
-                                <span class="modality-badge">LiDAR</span>
-                                <span class="modality-badge">SAR</span>
-                            </div>
-                            <i class="fas fa-chevron-down accordion-icon"></i>
-                        </div>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="dataset-grid-compact">
-                            <a href="https://machinelearning.ee.uh.edu/?page_id=459" target="_blank"
-                                class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>Houston2013</h4>
-                                    <p>Provides HSI and LiDAR data over the University of Houston campus, covering 15
-                                        land use classes (IEEE GRSS Data Fusion Contest).</p>
-                                    <div class="card-stats"><span>Train: 2,817</span><span>Test: 12,182</span></div>
-                                </div>
-                            </a>
-                            <a href="https://machinelearning.ee.uh.edu/2018-ieee-grss-data-fusion-challenge-fusion-of-multispectral-lidar-and-hyperspectral-data/"
-                                target="_blank" class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>Houston2018</h4>
-                                    <p>A more complex dataset covering 20 urban land use classes (IEEE GRSS Data Fusion
-                                        Contest).</p>
-                                    <div class="card-stats"><span>Train: 18,750</span><span>Test: 2M+</span></div>
-                                </div>
-                            </a>
-                            <a href="https://github.com/GatorSense/MUUFLGulfport" target="_blank"
-                                class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>MUUFL Gulfport</h4>
-                                    <p>HSI and LiDAR data collected over the University of Southern Mississippi,
-                                        Gulfport campus (11 urban land use classes).</p>
-                                    <div class="card-stats"><span>Train: 1,100</span><span>Test: 52,587</span></div>
-                                </div>
-                            </a>
-                            <a href="https://github.com/tyust-dayu/Trento" target="_blank" class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>Trento</h4>
-                                    <p>Covers a rural area south of Trento, Italy. Combines HSI with LiDAR-derived DSM
-                                        (6 classes).</p>
-                                    <div class="card-stats"><span>Train: 600</span><span>Test: 29,614</span></div>
-                                </div>
-                            </a>
-                            <a href="https://gfzpublic.gfz-potsdam.de/pubman/faces/ViewItemFullPage.jsp?itemId=item_1480927_5"
-                                target="_blank" class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>Berlin</h4>
-                                    <p>Co-registered HSI and SAR data for Berlin, Germany (8 urban land cover classes).
-                                    </p>
-                                    <div class="card-stats"><span>Train: 2,820</span><span>Test: 461K+</span></div>
-                                </div>
-                            </a>
-                            <a href="https://github.com/songyz2019/rs-fusion-datasets" target="_blank"
-                                class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>MDAS (Augsburg)</h4>
-                                    <p>Multi-sensor data for urban area classification in Augsburg, Germany, featuring
-                                        HSI and SAR imagery.</p>
-                                    <div class="card-stats"><span>Train: 761</span><span>Test: 77,533</span></div>
-                                </div>
-                            </a>
-                            <a href="https://github.com/spott/ForestNet" target="_blank" class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>ForestNet</h4>
-                                    <p>A dataset for wildfire prevention using Sentinel-2 imagery, topography (DSM), and
-                                        weather data.</p>
-                                    <div class="card-stats"><span>Train: 1,616</span><span>Val: 473</span><span>Test:
-                                            668</span></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- VISION & MULTIMEDIA (6) -->
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <div class="accordion-header-content">
-                            <span class="accordion-title">Vision & Multimedia</span>
-                            <span class="accordion-count">6 datasets</span>
-                        </div>
-                        <div class="accordion-header-right">
-                            <div class="modality-badges">
-                                <span class="modality-badge">Image</span>
-                                <span class="modality-badge">Depth</span>
-                                <span class="modality-badge">Text</span>
-                            </div>
-                            <i class="fas fa-chevron-down accordion-icon"></i>
-                        </div>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="dataset-grid-compact">
-                            <a href="https://press.liacs.nl/mirflickr/" target="_blank" class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>MIRFLICKR</h4>
-                                    <p>Images from Flickr with associated user-assigned tags, used for retrieval and
-                                        classification.</p>
-                                    <div class="card-stats"><span>Train: 14,010</span><span>Val: 2,001</span><span>Test:
-                                            4,004</span></div>
-                                </div>
-                            </a>
-                            <a href="https://github.com/iffsid/mmvae" target="_blank" class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>CUB Image-Caption</h4>
-                                    <p>Detailed bird images with rich, descriptive text captions.</p>
-                                    <div class="card-stats"><span>Train: 82,510</span><span>Val:
-                                            17,680</span><span>Test: 17,690</span></div>
-                                </div>
-                            </a>
-                            <a href="https://rgbd.cs.princeton.edu/" target="_blank" class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>SUN-RGBD</h4>
-                                    <p>Large-scale dataset for indoor scene understanding with RGB-D (color and depth)
-                                        images.</p>
-                                    <div class="card-stats"><span>Train: 4,845</span><span>Test: 4,659</span></div>
-                                </div>
-                            </a>
-                            <a href="https://cs.nyu.edu/~fergus/datasets/nyu_depth_v2.html" target="_blank"
-                                class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>NYUDv2</h4>
-                                    <p>RGB and Depth images of indoor scenes captured from a Microsoft Kinect.</p>
-                                    <div class="card-stats"><span>Train: 795</span><span>Val: 414</span><span>Test:
-                                            654</span></div>
-                                </div>
-                            </a>
-                            <a href="https://www.kaggle.com/datasets/gianmarco96/upmcfood101" target="_blank"
-                                class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>UPMC-Food101</h4>
-                                    <p>Food images paired with ingredient lists.</p>
-                                    <div class="card-stats"><span>Train: 62,971</span><span>Val: 5,000</span><span>Test:
-                                            22,715</span></div>
-                                </div>
-                            </a>
-                            <a href="https://github.com/iffsid/mmvae" target="_blank" class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>MNIST-SVHN</h4>
-                                    <p>Synthetic dataset combining MNIST (handwritten digits) and SVHN (street view
-                                        house numbers).</p>
-                                    <div class="card-stats"><span>Train: 560,680</span><span>Test: 100,000</span></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- NEUROMORPHIC (2) -->
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        <div class="accordion-header-content">
-                            <span class="accordion-title">Neuromorphic</span>
-                            <span class="accordion-count">2 datasets</span>
-                        </div>
-                        <div class="accordion-header-right">
-                            <div class="modality-badges">
-                                <span class="modality-badge">Event</span>
-                                <span class="modality-badge">EEG</span>
-                            </div>
-                            <i class="fas fa-chevron-down accordion-icon"></i>
-                        </div>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="dataset-grid-compact">
-                            <a href="https://github.com/MrLinNing/MemristorLSM" target="_blank"
-                                class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>N-MNIST + N-TIDIGITS</h4>
-                                    <p>Neuromorphic versions of MNIST (vision) and TIDIGITS (audio-spoken digits)
-                                        recorded as event streams.</p>
-                                    <div class="card-stats"><span>Train: 2,835</span><span>Val: 603</span><span>Test:
-                                            612</span></div>
-                                </div>
-                            </a>
-                            <a href="https://github.com/MrLinNing/MemristorLSM" target="_blank"
-                                class="dataset-card-link">
-                                <div class="dataset-card-compact">
-                                    <h4>E-MNIST + EEG</h4>
-                                    <p>E-MNIST (handwritten letters/digits) paired with simultaneously recorded EEG
-                                        brain signals.</p>
-                                    <div class="card-stats"><span>Train: 468</span><span>Val: 104</span><span>Test:
-                                            130</span></div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    full documentation &rarr;</a></p>
+            <div id="dataset-accordion-root" class="dataset-accordion" aria-label="Dataset category list"></div>
         </div>
     </section>
 
-
-
-    
     <section id="paradigms" class="section">
         <div class="container">
             <h2 class="section-title">Paradigms</h2>
-            <p class="section-intro">MultiBench++ implements a comprehensive taxonomy of multimodal fusion approaches. The following tree structure organizes fusion methods by their integration stage and architectural characteristics.</p>
+            <p class="section-intro">Following the paper setup, MULTIBENCH++ evaluates 11 fusion baselines and
+                advanced methods, including Transformer-centric feature fusion and decision-level logit fusion.</p>
     
             <div class="fusion-tree">
-                <div class="tree-root-node">
-                    <strong>Multimodal Fusion Methods</strong>
-                </div>
-                
                 <ul class="tree-level-1">
                     <li>
                         <div class="tree-category">
                             <strong>Early Fusion</strong>
-                            <span class="category-desc">— Feature-level integration</span>
+                            <span class="category-desc">- Feature-level integration</span>
                         </div>
                         <ul class="tree-level-2">
                             <li>
@@ -619,11 +153,11 @@
                             </li>
                         </ul>
                     </li>
-                    
+
                     <li>
                         <div class="tree-category">
                             <strong>Intermediate Fusion</strong>
-                            <span class="category-desc">— Joint representation learning</span>
+                            <span class="category-desc">- Joint representation learning</span>
                         </div>
                         <ul class="tree-level-2">
                             <li>
@@ -657,11 +191,11 @@
                             </li>
                         </ul>
                     </li>
-                    
+
                     <li>
                         <div class="tree-category">
                             <strong>Late Fusion</strong>
-                            <span class="category-desc">— Decision-level integration</span>
+                            <span class="category-desc">- Decision-level integration</span>
                         </div>
                         <ul class="tree-level-2">
                             <li>
@@ -681,146 +215,65 @@
                 </ul>
             </div>
     
-            <div class="paradigm-summary">
-                <div class="summary-item">
-                    <div class="summary-number">15+</div>
-                    <div class="summary-label">Fusion Methods Implemented</div>
+        </div>
+    </section>
+
+    <section id="code" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">Code</h2>
+            <p class="section-intro">The implementation follows the benchmark design in the paper: unified data access,
+                modular encoders and fusion blocks, and a standardized training/evaluation workflow. Source code is
+                available on <a href="https://github.com/ravexly/MultiBenchplus" target="_blank"
+                    class="inline-link">GitHub</a>.</p>
+
+            <div class="code-experience" id="code-overview">
+                <div class="code-narrative">
+                    <p>MULTIBENCH++ is designed as a reproducible evaluation stack rather than a single fixed model.
+                        Data handling, representation learning, and fusion logic are decoupled into reusable modules for
+                        cross-domain, repeatable method comparison.</p>
+                    <p>This structure supports fair method comparison under a shared protocol while keeping new model
+                        integration straightforward.</p>
                 </div>
-                <div class="summary-item">
-                    <div class="summary-number">3</div>
-                    <div class="summary-label">Main Fusion Paradigms</div>
-                </div>
-                <div class="summary-item">
-                    <div class="summary-number">10</div>
-                    <div class="summary-label">Method Categories</div>
+
+                <div class="code-module-mosaic">
+                    <article class="mosaic-module module-loaders module-dataset-loaders" id="code-loaders">
+                        <h3>Dataset Loaders</h3>
+                        <p>Dataset-specific preprocessing, split rules, and modality alignment are handled in each
+                            loader, while a unified training entry keeps all tasks on the same interface so comparisons
+                            stay fair and reruns remain reproducible.</p>
+                    </article>
+
+                    <article class="mosaic-module module-encoders module-unimodal-encoders" id="code-encoders">
+                        <h3>Unimodal Encoders</h3>
+                        <p>Modality-specific encoders convert heterogeneous inputs into compatible latent features for
+                            downstream fusion and task heads, and this separation allows controlled ablations or
+                            backbone replacement without changing the benchmark evaluation protocol.</p>
+                    </article>
+
+                    <article class="mosaic-module module-fusions module-fusion-implementations">
+                        <h3>Fusion Implementations</h3>
+                        <p>The benchmark includes early fusion baselines, Transformer-centric feature interaction, and
+                            decision-level logit fusion modules reported in the paper, all organized for direct
+                            side-by-side evaluation where performance differences can be attributed to fusion strategy
+                            changes.</p>
+                    </article>
+
+                    <article class="mosaic-module module-train module-training-evaluation" id="code-training">
+                        <h3>Training, Evaluation, Experiments</h3>
+                        <p>Training and evaluation follow a standardized routine with task-specific metrics, repeated
+                            runs, and fixed hardware/seed settings, while an automated tuning workflow improves
+                            reproducibility and reduces manual hyperparameter search overhead.</p>
+                    </article>
                 </div>
             </div>
         </div>
     </section>
 
-
-
-
-    <section id="code" class="section section-alt">
+    <section id="leaderboard" class="section">
         <div class="container">
-            <h2 class="section-title">Code</h2>
-            <p class="section-intro">MultiBench++ features a modular architecture designed for easy extension. All code is available on <a href="https://github.com/ravexly/MultiBenchplus" target="_blank" class="inline-link">GitHub</a>.</p>
-
-            <!-- Architecture Overview -->
-            <div class="code-architecture-grid">
-                <div class="arch-card arch-primary">
-                    <h3>39 Datasets</h3>
-                    <p>Across 6 domains</p>
-                </div>
-                <div class="arch-card arch-secondary">
-                    <h3>15+ Fusion Methods</h3>
-                    <p>Early, Intermediate & Late</p>
-                </div>
-                <div class="arch-card arch-tertiary">
-                    <h3>Multiple Encoders</h3>
-                    <p>BERT, ResNet & more</p>
-                </div>
-                <div class="arch-card arch-quaternary">
-                    <h3>3 Evaluation Modes</h3>
-                    <p>Performance, Robustness, Complexity</p>
-                </div>
-            </div>
-
-            <!-- Core Components -->
-            <div class="code-components-section">
-                <!-- Component 1: Dataset Loaders -->
-                <div class="component-showcase-clean">
-                    <div class="component-header-clean">
-                        <div class="component-title-clean">
-                            <span class="component-number-clean">01</span>
-                            <div>
-                                <h4>Dataset Loaders</h4>
-                                <span class="component-path">dataset/*/get_data.py</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="component-body-clean">
-                        <p class="component-desc">Unified data loading interface for all 39 datasets. Each dataset has its own loader with consistent API, making it easy to switch between datasets.</p>
-                        <div class="dataset-tags">
-                            <span class="dataset-tag">MAMI</span>
-                            <span class="dataset-tag">MELD</span>
-                            <span class="dataset-tag">IEMOCAP</span>
-                            <span class="dataset-tag">MIMIC-III</span>
-                            <span class="dataset-tag">SIIM-ISIC</span>
-                            <span class="dataset-tag">Houston2013</span>
-                            <span class="dataset-tag">ForestNet</span>
-                            <span class="dataset-tag">SUN-RGBD</span>
-                            <span class="dataset-tag-more">+31 more</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Component 2: Encoders -->
-                <div class="component-showcase-clean">
-                    <div class="component-header-clean">
-                        <div class="component-title-clean">
-                            <span class="component-number-clean">02</span>
-                            <div>
-                                <h4>Unimodal Encoders</h4>
-                                <span class="component-path">encoders/</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="component-body-clean">
-                        <p class="component-desc">Pre-built encoders for extracting features from different modalities. Supports both pre-trained and custom architectures.</p>
-                        <div class="encoder-grid-clean">
-                            <div class="encoder-card-clean">
-                                <div class="encoder-header-clean">
-                                    <strong>BERT Encoder</strong>
-                                    <code>bert.py</code>
-                                </div>
-                                <p>Pre-trained BERT-base-uncased for text encoding. Supports fine-tuning and feature extraction modes.</p>
-                            </div>
-                            <div class="encoder-card-clean">
-                                <div class="encoder-header-clean">
-                                    <strong>Image Encoder</strong>
-                                    <code>image.py</code>
-                                </div>
-                                <p>ResNet, VGG, and custom CNN architectures for visual feature extraction.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Component 3: Training & Evaluation -->
-                <div class="component-showcase-clean">
-                    <div class="component-header-clean">
-                        <div class="component-title-clean">
-                            <span class="component-number-clean">03</span>
-                            <div>
-                                <h4>Training & Evaluation</h4>
-                                <span class="component-path">training_structures/ & eval_scripts/</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="component-body-clean">
-                        <p class="component-desc">Flexible training pipelines and comprehensive evaluation metrics for benchmarking multimodal models.</p>
-                        <div class="eval-grid-clean">
-                            <div class="eval-card-clean">
-                                <strong>Training Structures</strong>
-                                <p><code>Supervised_Learning_V2.py</code> provides standard supervised training loop with support for gradient blending, multi-task learning, automatic checkpointing and early stopping.</p>
-                            </div>
-                            <div class="eval-card-clean">
-                                <strong>Performance Metrics</strong>
-                                <p><code>performance.py</code> includes accuracy, F1, AUC, and domain-specific metrics like C-index for survival and mIoU for segmentation.</p>
-                            </div>
-                            <div class="eval-card-clean">
-                                <strong>Robustness Testing</strong>
-                                <p><code>robustness.py</code> evaluates missing modality handling, noise injection, adversarial testing, and cross-dataset generalization.</p>
-                            </div>
-                            <div class="eval-card-clean">
-                                <strong>Complexity Analysis</strong>
-                                <p><code>complexity.py</code> measures FLOPs, parameter counting, memory profiling, inference speed, and efficiency benchmarking.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <h2 class="section-title">Leaderboard</h2>
+            <p class="section-intro">Comprehensive experimental results of multimodal fusion methods across specialized domains. The best result in each row is highlighted.</p>
+            <div id="leaderboard-tables"></div>
         </div>
     </section>
 
@@ -832,17 +285,17 @@
                 <div class="code-block-wrapper structure-block">
                     <h3>Project Hierarchy</h3>
                     <pre><code>MultiBench++/
-├── datasets/             # Loaders for 10+ domains (MAMI, etc.)
-├── encoders/             # Unimodal backbones (BERT, ResNet)
-├── fusions/              # 15+ fusion implementations
-│   ├── early_fusion.py   # Concatenation & Tensor Fusion
-│   ├── attention.py      # Cross-modal Attention
-│   └── late_fusion.py    # Evidence Theory & Decision fusion
-├── training_structures/  # Pipelines (GradientBlend, MMD)
-├── objective_functions/  # Loss functions & metrics
-├── configs/              # Hyperparameter configs
-├── main.py               # Main experiment entry point
-└── requirements.txt      # Dependencies</code></pre>
+|-- datasets/             # Loaders spanning 37 datasets
+|-- encoders/             # Unimodal backbones (BERT, ResNet)
+|-- fusions/              # 11 benchmarked fusion methods
+|   |-- feature_fusion.py # Concat / TF / Transformer-centric methods
+|   `-- logit_fusion.py   # LS / TMC
+|-- baseline/             # Standardized experiment scripts
+|   `-- MAMI/baseline.py
+|-- training_structures/  # Standardized training routines
+|-- objective_functions/  # Loss functions & metrics
+|-- configs/              # Hyperparameter configs
+`-- requirements.txt      # Dependencies</code></pre>
                 </div>
 
                 <div class="code-block-wrapper structure-block">
@@ -851,58 +304,58 @@
 conda create -n multibench python=3.9
 conda activate multibench
 pip install -r requirements.txt
+
 # 2. Data Preparation
-# Download or place data in ./data
-bash scripts/download_data.sh
+# Option A: follow MultiBenchplus-main/DATASET.md
+# Option B: Baidu Netdisk: https://pan.baidu.com/s/11ITMTGO4KCnTLr05dnmThg?pwd=8rc9
+# Place datasets under ./data/&lt;DATASET_NAME&gt;/
+
 # 3. Run Experiments
-# Example: Train Tensor Fusion on MAMI
-python main.py --dataset MAMI --fusion tensor_fusion
-# 4. Evaluation
-python eval.py --ckpt checkpoints/best.pth</code></pre>
+cd baseline/MAMI
+python baseline.py</code></pre>
                 </div>
             </div>
         </div>
     </section>
 
-
-
-
     <section id="citation" class="section">
         <div class="container">
             <h2 class="section-title">Citation</h2>
             <div class="citation-box">
-                <pre id="bibtex">@article{liang2021multibench,
-  title={Multibench: Multiscale benchmarks for multimodal representation learning},
-  author={Liang P P, Lyu Y, Fan X, et al.},
-  journal={Advances in neural information processing systems},
-  volume={2021},
-  number={DB1},
-  pages={1},
+                <pre id="bibtex">@inproceedings{liang2021multibench,
+  title={MultiBench: Multiscale Benchmarks for Multimodal Representation Learning},
+  author={Liang, Paul Pu and Lyu, Yiwei and Fan, Xiang and Wu, Zetian and Cheng, Yun and Wu, Jason and Chen, Leslie Yufan and Wu, Peter and Lee, Michelle A and Zhu, Yuke and Salakhutdinov, Ruslan and Morency, Louis-Philippe},
+  booktitle={Thirty-fifth Conference on Neural Information Processing Systems Datasets and Benchmarks Track (Round 1)},
   year={2021}
 }
 
 @inproceedings{xue2026multibench,
   title={MULTIBENCH++: A Unified and Comprehensive Multimodal Fusion Benchmarking Across Specialized Domains},
-  author={Xue L, Zhang C, Xue K, et al.},
+  author={Leyan Xue and Changqing Zhang and Kecheng Xue and Xiaohong Liu and Guangyu Wang and Zongbo Han},
   booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
   year={2026}
 }</pre>
-                <button class="btn-copy" onclick="copyCitation()"><i class="far fa-copy"></i> Copy</button>
+                <button id="copy-citation-btn" class="btn-copy" type="button">Copy</button>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 MultiBench++.</p>
+            <p>&copy; 2026 MultiBench++. Released under the <a href="https://github.com/ravexly/MultiBenchplus/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>.</p>
             <div class="footer-links">
                 <a href="https://github.com/ravexly/MultiBenchplus">GitHub</a>
+                <span class="footer-divider"></span>
                 <a href="#">Hugging Face</a>
             </div>
         </div>
     </footer>
 
+    </div><!-- /.main-content -->
+
+    <script src="datasets.js"></script>
     <script src="script.js"></script>
+    <script src="leaderboard.js"></script>
 </body>
 
 </html>
