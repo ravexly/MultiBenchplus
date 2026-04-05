@@ -15,7 +15,7 @@ from baseline._shared.experiment_runner import (
     run_fusion_experiment,
     setup_baseline_runtime,
 )
-from encoders.sequence_lstm import SequenceLSTMEncoder
+from encoders.nmnist_ndigits_lstm import NMNISTNdigitsLSTMEncoder
 from encoders.spatiotemporal_3d_cnn import SpatioTemporal3DCNNEncoder
 from fusions.common_fusions import Concat, ConcatEarly, CrossAttentionConcatFusion, CrossAttentionFusion, EarlyFusionTransformer, HierarchicalAttentionMultiToOne, HierarchicalAttentionOneToMulti, LateFusionTransformer, TensorFusion
 from fusions.late_fusion import MultimodalLateFusionClf
@@ -35,7 +35,7 @@ DECISION_FUSIONS = frozenset({"TMC", "LateFusion"})
 
 
 def build_encoders() -> list[nn.Module]:
-    return [SpatioTemporal3DCNNEncoder().to(device), SequenceLSTMEncoder(129, 128, 2).to(device)]
+    return [SpatioTemporal3DCNNEncoder().to(device), NMNISTNdigitsLSTMEncoder(64, 128, 2).to(device)]
 
 
 def build_fusion_methods(num_classes: int) -> dict[str, nn.Module]:
