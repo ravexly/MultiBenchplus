@@ -36,8 +36,8 @@ from fusions.common_fusions import (
 )
 from fusions.late_fusion import MultimodalLateFusionClf
 from fusions.tmc import TMC
-from models.image import ImageEncoder
-from models.bert import BertEncoder
+from encoders.image import ImageEncoder
+from encoders.bert import BertEncoder
 from transformers import BertTokenizer
 import random
 import numpy as np
@@ -119,7 +119,7 @@ def main() -> None:
         tokenizer=tokenizer,
         output_dir=OUTPUT_DIR,
         train_fn=train,
-        test_fn=test,
+        test_fn=test
     )
 
 

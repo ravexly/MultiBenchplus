@@ -18,8 +18,8 @@ from baseline._shared.experiment_runner import (
     setup_baseline_runtime,
 )
 from get_data import get_loader
-from models.bert import BertEncoder
-from models.image import ImageEncoder
+from encoders.bert import BertEncoder
+from encoders.image import ImageEncoder
 from training_structures.Supervised_Learning_V2 import test, train
 
 DATASET_NAME = 'cub'

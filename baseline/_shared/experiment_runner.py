@@ -154,6 +154,9 @@ def run_fusion_experiment(
     output_dir: Path | None = None,
     train_fn=None,
     test_fn=None,
+    eval_metric: str = "accuracy",
+    auroc_average: str = "macro",
+    auroc_multi_class: str = "ovr",
 ) -> None:
     train_fn = train_fn or _default_train
     test_fn = test_fn or _default_test
@@ -187,6 +190,7 @@ def run_fusion_experiment(
                     "score": None,
                     "task": task,
                     "direction": direction,
+                    "eval_metric": eval_metric,
                     "lr": lr,
                     "weight_decay": weight_decay,
                     "freeze_encoders": freeze_encoders,
@@ -210,6 +214,9 @@ def run_fusion_experiment(
                     fusion_type=fusion_type,
                     early_stop=True,
                     objective=criterion_factory(),
+                    eval_metric=eval_metric,
+                    auroc_average=auroc_average,
+                    auroc_multi_class=auroc_multi_class,
                 )
 
                 checkpoint_metadata["score"] = float(score)
@@ -233,6 +240,9 @@ def run_fusion_experiment(
                 criterion=criterion_factory(),
                 no_robust=True,
                 task=task,
+                eval_metric=eval_metric,
+                auroc_average=auroc_average,
+                auroc_multi_class=auroc_multi_class,
             )
 
             study.trials_dataframe().to_csv(output_dir / f"{fusion_name}_{seed}_trials.csv", index=False)

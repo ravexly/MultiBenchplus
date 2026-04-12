@@ -73,7 +73,7 @@ def main() -> None:
         tokenizer=None,
         output_dir=OUTPUT_DIR,
         train_fn=train,
-        test_fn=test,
+        test_fn=test
     )
 
 

@@ -5,12 +5,12 @@ import torch
 from torch import nn
 from tqdm import tqdm
 
-from eval_scripts.performance import AUPRC, f1_score, accuracy, eval_affect
+from eval_scripts.performance import AUPRC, AUROC, f1_score, accuracy, eval_affect
 from eval_scripts.complexity import all_in_one_train, all_in_one_test
 from transformers.tokenization_utils_base import BatchEncoding
 # from eval_scripts.robustness import relative_robustness, effective_robustness, single_plot
 
-softmax = nn.Softmax()
+softmax = nn.Softmax(dim=1)
 
 # Global lists to track metrics across runs
 allacc = []
@@ -159,7 +159,8 @@ def train(
         weight_decay=0.0, objective=nn.CrossEntropyLoss(), auprc=False,
         save='best.pt', validtime=False, objective_args_dict=None,
         input_to_float=True, clip_val=8, track_complexity=True,
-        tokenizer=None, freeze_encoders=False, fusion_type='feature'):
+        tokenizer=None, freeze_encoders=False, fusion_type='feature',
+        eval_metric="accuracy", auroc_average="macro", auroc_multi_class="ovr"):
     """
     Handles a simple supervised training loop.
     """
@@ -181,7 +182,7 @@ def train(
         op = optimtype([p for p in model.parameters() if p.requires_grad] + additional_params, lr=lr, weight_decay=weight_decay)
         
         best_val_loss = 10000
-        best_acc = 0
+        best_metric = float("-inf")
         best_f1 = 0
         patience = 0
 
@@ -234,7 +235,7 @@ def train(
             model.eval()
             with torch.no_grad():
                 total_loss = 0.0
-                preds, truths, pts = [], [], []
+                preds, truths, probs, pts = [], [], [], []
 
                 with tqdm(valid_dataloader, desc=f"Epoch {epoch + 1}/{total_epochs} (Valid)", unit="batch") as valid_bar:
                     for j in valid_bar:
@@ -261,6 +262,8 @@ def train(
                         
                         if task == "classification":
                             preds.append(torch.argmax(out, 1))
+                            if eval_metric == "auroc":
+                                probs.append(torch.softmax(out, dim=1))
                         elif task == "multilabel":
                             preds.append(torch.sigmoid(out).round())
                         
@@ -278,11 +281,20 @@ def train(
                 val_loss = total_loss / total_samples
                 
                 if task == "classification":
-                    acc = accuracy(truths, preds)
-                    print(f"Epoch {epoch + 1} valid loss: {val_loss:.4f}, acc: {acc:.4f}")
-                    if acc > best_acc:
+                    metric_name = "auroc" if eval_metric == "auroc" else "acc"
+                    if eval_metric == "auroc":
+                        metric_value = AUROC(
+                            truths,
+                            torch.cat(probs, 0),
+                            average=auroc_average,
+                            multi_class=auroc_multi_class,
+                        )
+                    else:
+                        metric_value = accuracy(truths, preds)
+                    print(f"Epoch {epoch + 1} valid loss: {val_loss:.4f}, {metric_name}: {metric_value:.4f}")
+                    if metric_value > best_metric:
                         patience = 0
-                        best_acc = acc
+                        best_metric = metric_value
                         print("Saving Best Model")
                         torch.save(model, save)
                     else:
@@ -319,8 +331,8 @@ def train(
                     print(f"Valid time: {time.time() - valid_start_time:.2f}s")
         
         if task == "classification":
-            allacc.append(best_acc)
-            return best_acc
+            allacc.append(best_metric)
+            return best_metric
         elif task == "regression":
             allloss.append(best_val_loss)
             return best_val_loss
@@ -334,7 +346,10 @@ def train(
         return _trainprocess()
 
 
-def single_test(model, test_dataloader, is_packed=False, criterion=nn.CrossEntropyLoss(), task="classification", auprc=False, input_to_float=True):
+def single_test(
+        model, test_dataloader, is_packed=False, criterion=nn.CrossEntropyLoss(),
+        task="classification", auprc=False, input_to_float=True,
+        eval_metric="accuracy", auroc_average="macro", auroc_multi_class="ovr"):
     """
     Run a single test loop for a model.
     """
@@ -348,7 +363,7 @@ def single_test(model, test_dataloader, is_packed=False, criterion=nn.CrossEntro
 
     with torch.no_grad():
         total_loss = 0.0
-        preds, truths, pts = [], [], []
+        preds, truths, probs, pts = [], [], [], []
 
         for j in test_dataloader:
             model.eval()
@@ -365,6 +380,8 @@ def single_test(model, test_dataloader, is_packed=False, criterion=nn.CrossEntro
 
             if task == "classification":
                 preds.append(torch.argmax(out, 1))
+                if eval_metric == "auroc":
+                    probs.append(torch.softmax(out, dim=1))
             elif task == "multilabel":
                 preds.append(torch.sigmoid(out).round())
             elif task == "posneg-classification":
@@ -387,6 +404,15 @@ def single_test(model, test_dataloader, is_packed=False, criterion=nn.CrossEntro
             print(f"AUPRC: {AUPRC(pts):.4f}")
         
         if task == "classification":
+            if eval_metric == "auroc":
+                metric_value = AUROC(
+                    truths,
+                    torch.cat(probs, 0),
+                    average=auroc_average,
+                    multi_class=auroc_multi_class,
+                )
+                print(f"AUROC: {metric_value:.4f}")
+                return metric_value
             acc = accuracy(truths, preds)
             print(f"Accuracy: {acc:.4f}")
             return acc
@@ -404,19 +430,29 @@ def single_test(model, test_dataloader, is_packed=False, criterion=nn.CrossEntro
             return {'Accuracy': accs}
 
 
-def test(model, test_dataloaders_all, dataset='default', method_name='My method', is_packed=False, criterion=nn.CrossEntropyLoss(), task="classification", auprc=False, input_to_float=True, no_robust=False):
+def test(
+        model, test_dataloaders_all, dataset='default', method_name='My method',
+        is_packed=False, criterion=nn.CrossEntropyLoss(), task="classification",
+        auprc=False, input_to_float=True, no_robust=False, eval_metric="accuracy",
+        auroc_average="macro", auroc_multi_class="ovr"):
     """
     Handles getting test results and robustness evaluation.
     """
     if no_robust:
         def _testprocess():
-            return single_test(model, test_dataloaders_all, is_packed, criterion, task, auprc, input_to_float)
+            return single_test(
+                model, test_dataloaders_all, is_packed, criterion, task, auprc,
+                input_to_float, eval_metric, auroc_average, auroc_multi_class,
+            )
         return all_in_one_test(_testprocess, [model])
 
     # Standard test on clean data
     def _testprocess_clean():
         clean_dataloader = test_dataloaders_all[list(test_dataloaders_all.keys())[0]][0]
-        return single_test(model, clean_dataloader, is_packed, criterion, task, auprc, input_to_float)
+        return single_test(
+            model, clean_dataloader, is_packed, criterion, task, auprc,
+            input_to_float, eval_metric, auroc_average, auroc_multi_class,
+        )
     
     all_in_one_test(_testprocess_clean, [model])
     
@@ -426,7 +462,10 @@ def test(model, test_dataloaders_all, dataset='default', method_name='My method'
         robustness_curve = {}
         
         for test_dataloader in tqdm(test_dataloaders, desc=f"Noise on {noisy_modality}"):
-            single_test_result = single_test(model, test_dataloader, is_packed, criterion, task, auprc, input_to_float)
+            single_test_result = single_test(
+                model, test_dataloader, is_packed, criterion, task, auprc,
+                input_to_float, eval_metric, auroc_average, auroc_multi_class,
+            )
             
             if isinstance(single_test_result, dict):
                 for k, v in single_test_result.items():
