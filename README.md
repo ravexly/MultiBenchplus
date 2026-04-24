@@ -9,7 +9,7 @@ Official codebase description for **MULTIBENCH++**, a unified and comprehensive 
 
 ## Links
 
-- **Project Page:** MultiBench++ | Comprehensive Multimodal Fusion Benchmark
+- **Project Page:** [MultiBench++ | Comprehensive Multimodal Fusion Benchmark](https://ravexly.github.io/MultiBenchplus/)
 - **arXiv:** [2511.06452] MULTIBENCH++: A Unified and Comprehensive Multimodal Fusion Benchmarking Across Specialized Domains  
   https://arxiv.org/abs/2511.06452
 
