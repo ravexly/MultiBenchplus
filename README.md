@@ -1,6 +1,6 @@
 <div align="center">
 
-# MultiBench++
+# MULTIBENCH++
 
 ### A Unified and Comprehensive Multimodal Fusion Benchmarking Across Specialized Domains
 
