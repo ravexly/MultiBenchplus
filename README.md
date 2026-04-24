@@ -1,80 +1,110 @@
+<div align="center">
 
 # MultiBench++
 
-**A Unified and Comprehensive Multimodal Fusion Benchmarking Across Specialized Domains**
+### A Unified and Comprehensive Multimodal Fusion Benchmarking Across Specialized Domains
 
-[![arXiv](https://img.shields.io/badge/arXiv-2511.06452-b31b1b.svg)](https://arxiv.org/abs/2511.06452)
+<p>
+  <a href="https://arxiv.org/abs/2511.06452">
+    <img src="https://img.shields.io/badge/arXiv-2511.06452-b31b1b?style=flat-square" alt="arXiv">
+  </a>
+  <a href="https://ravexly.github.io/MultiBenchplus/">
+    <img src="https://img.shields.io/badge/Project_Page-MultiBench++%20%7C%20Comprehensive%20Multimodal%20Fusion%20Benchmark-2ea44f?style=flat-square" alt="Project Page">
+  </a>
+</p>
 
-Official codebase description for **MULTIBENCH++**, a unified and comprehensive benchmark for evaluating multimodal fusion methods across specialized domains.
+</div>
 
-## Links
+---
 
-- **Project Page:** [MultiBench++ | Comprehensive Multimodal Fusion Benchmark](https://ravexly.github.io/MultiBenchplus/)
-- **arXiv:** [2511.06452] MULTIBENCH++: A Unified and Comprehensive Multimodal Fusion Benchmarking Across Specialized Domains  
-  https://arxiv.org/abs/2511.06452
+This repository contains the official implementation of **MULTIBENCH++**, a unified and comprehensive benchmark for evaluating **multimodal fusion methods** across specialized domains. It is designed to support fair, reproducible, and systematic comparison of fusion strategies under a consistent experimental pipeline.
+
+By emphasizing controlled encoder settings and broad domain coverage, **MULTIBENCH++** helps researchers better understand how fusion methods behave across different modalities, tasks, and data conditions.
 
 ## Requirements
 
 ### Dataset
 
-Follow [DATASET.md](https://www.google.com/search?q=DATASET.md) to install datasets.
+Please follow [DATASET.md](DATASET.md) to prepare the required datasets.
 
-## Get Started
+## Getting Started
 
-### 1\. Data Preparation
+### 1. Data Preparation
 
 All datasets should be organized under the `data/` directory.
 
-**Example: Setting up the MAMI Dataset**
+#### Example: Setting up the MAMI dataset
 
-1.  Follow [DATASET.md](https://www.google.com/search?q=DATASET.md) to download the MAMI dataset. Alternative Download: We also provide a Baidu Netdisk link for quicker access to the datasets:Link: [Baidu Netdisk ](https://pan.baidu.com/s/11ITMTGO4KCnTLr05dnmThg?pwd=8rc9)(Password: 8rc9)
-Note: We are actively maintaining and updating this link. Some datasets might not be fully available yet; please stay tuned for upcoming updates.
+1. Follow [DATASET.md](DATASET.md) to download the MAMI dataset.
+2. We also provide a Baidu Netdisk mirror for quicker access:
+   - **Link:** [Baidu Netdisk](https://pan.baidu.com/s/11ITMTGO4KCnTLr05dnmThg?pwd=8rc9)
+   - **Password:** `8rc9`
+3. Place the downloaded data under `data/MAMI/`.
 
-2.  Place the data into `data/MAMI/`.
-
-<!-- end list -->
+> Note:
+> We are actively maintaining and updating the Baidu Netdisk link. Some datasets may not be fully available yet.
 
 ```text
 ProjectRoot/
-├── data/
-│   └── MAMI/
-├── exper/
-│   └── baseline/
-│       ├── mami_baseline.py
-│       ├── healthcare_baseline.py
-│       └── ...
-└── ...
+|-- data/
+|   `-- MAMI/
+|-- exper/
+|   `-- baseline/
+|       |-- mami_baseline.py
+|       |-- healthcare_baseline.py
+|       `-- ...
+`-- ...
 ```
 
-### 2\. Running Experiments
+### 2. Running Experiments
 
-We provide standardized scripts in the `baseline/` directory to facilitate quick reproduction across all datasets.
+We provide standardized scripts in the `baseline/` directory to facilitate quick reproduction across datasets.
 
 ```bash
-# Navigate to the baseline directory (e.g., MAMI)
+# Navigate to the baseline directory for a target dataset
 cd baseline/MAMI
 
-# Run the specific experiment script 
+# Run the experiment
 python baseline.py
 ```
 
------
-
-##  Key Design Notes
+## Key Design Notes
 
 ### Encoder Selection Strategy
 
-To ensure a **pure comparison of fusion performance**, our experimental setup follows these principles:
+To ensure a **clean comparison of fusion performance**, our experimental setup follows the principles below:
 
-  * **Simplicity First:** We prioritize using the simplest possible encoders to isolate the impact of the fusion mechanism. For pre-processed datasets where features are already extracted, we utilize an **Identity Encoder**. In most scenarios, adding a simple MLP (Multi-Layer Perceptron) can directly boost performance by projecting features into a more suitable space.
-  * **Combinatorial Optimization:** Please note that the choice of **Encoder** and **Fusion Method** is a combinatorial problem. A specific fusion method's performance may vary significantly depending on the underlying encoder architecture.
+- **Simplicity First:** We prioritize simple encoders to better isolate the contribution of the fusion mechanism. For pre-extracted features, we use an **Identity Encoder**. In many scenarios, a lightweight **MLP** can further improve performance by projecting features into a more suitable space.
+- **Combinatorial Optimization:** The choice of **encoder** and **fusion method** is inherently combinatorial. The effectiveness of a given fusion strategy may vary significantly depending on the underlying encoder architecture.
 
-### Encoders Setup
+### Encoder Setup
 
-For BERT-based experiments, download `bert-base-uncased` ([Google Drive Link](https://drive.google.com/file/d/1ivh-3aHtoqRMwVN4ZOPvPm59pFP93-hD/view)) and place it in the root folder: `bert-base-uncased/`.
+For BERT-based experiments, please download `bert-base-uncased` from the link below and place it in the project root:
 
------
+- [bert-base-uncased (Google Drive)](https://drive.google.com/file/d/1ivh-3aHtoqRMwVN4ZOPvPm59pFP93-hD/view)
 
-### Acknowledgements
+Expected structure:
 
-Our implementation is built upon [MULTIBENCH](https://github.com/pliang279/MultiBench). We thank the authors for their excellent open-source work.
+```text
+ProjectRoot/
+|-- bert-base-uncased/
+|-- data/
+`-- ...
+```
+
+## Citation
+
+If you find this project useful, please consider citing:
+
+```bibtex
+@article{multibenchpp2025,
+  title={MULTIBENCH++: A Unified and Comprehensive Multimodal Fusion Benchmarking Across Specialized Domains},
+  author={},
+  journal={arXiv preprint arXiv:2511.06452},
+  year={2025}
+}
+```
+
+## Acknowledgements
+
+Our implementation is built upon [MULTIBENCH](https://github.com/pliang279/MultiBench). We sincerely thank the authors for their excellent open-source contribution.
