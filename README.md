@@ -97,11 +97,18 @@ ProjectRoot/
 If you find this project useful, please consider citing:
 
 ```bibtex
-@article{multibenchpp2025,
+@inproceedings{liang2021multibench,
+  title={MultiBench: Multiscale Benchmarks for Multimodal Representation Learning},
+  author={Liang, Paul Pu and Lyu, Yiwei and Fan, Xiang and Wu, Zetian and Cheng, Yun and Wu, Jason and Chen, Leslie Yufan and Wu, Peter and Lee, Michelle A and Zhu, Yuke and Salakhutdinov, Ruslan and Morency, Louis-Philippe},
+  booktitle={Thirty-fifth Conference on Neural Information Processing Systems Datasets and Benchmarks Track (Round 1)},
+  year={2021}
+}
+
+@inproceedings{xue2026multibench,
   title={MULTIBENCH++: A Unified and Comprehensive Multimodal Fusion Benchmarking Across Specialized Domains},
-  author={},
-  journal={arXiv preprint arXiv:2511.06452},
-  year={2025}
+  author={Leyan Xue and Changqing Zhang and Kecheng Xue and Xiaohong Liu and Guangyu Wang and Zongbo Han},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  year={2026}
 }
 ```
 
