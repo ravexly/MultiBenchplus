@@ -1,7 +1,17 @@
 
 # MultiBench++
 
-Official code of MULTIBENCH++: A Unified and Comprehensive Multimodal Fusion Benchmarking Across Specialized Domains
+**A Unified and Comprehensive Multimodal Fusion Benchmarking Across Specialized Domains**
+
+[![arXiv](https://img.shields.io/badge/arXiv-2511.06452-b31b1b.svg)](https://arxiv.org/abs/2511.06452)
+
+Official codebase description for **MULTIBENCH++**, a unified and comprehensive benchmark for evaluating multimodal fusion methods across specialized domains.
+
+## Links
+
+- **Project Page:** MultiBench++ | Comprehensive Multimodal Fusion Benchmark
+- **arXiv:** [2511.06452] MULTIBENCH++: A Unified and Comprehensive Multimodal Fusion Benchmarking Across Specialized Domains  
+  https://arxiv.org/abs/2511.06452
 
 ## Requirements
 
