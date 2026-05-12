@@ -37,8 +37,8 @@ All datasets should be organized under the `data/` directory.
 
 1. Follow [DATASET.md](DATASET.md) to download the MAMI dataset.
 2. We also provide a Baidu Netdisk mirror for quicker access:
-   - **Link:** [Baidu Netdisk](https://pan.baidu.com/s/1hvQHGS0WKmpbZYT1nJVeJA?pwd=29xy)
-   - **Password:** `29xy`
+   - **Link:** [Baidu Netdisk](https://pan.baidu.com/s/1JtgA9QeN_d7VKxrfbwhePQ?pwd=z48h)
+   - **Password:** `z48h`
 3. Place the downloaded data under `data/`.
 
 > Note:
