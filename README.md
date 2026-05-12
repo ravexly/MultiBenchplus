@@ -39,7 +39,7 @@ All datasets should be organized under the `data/` directory.
 2. We also provide a Baidu Netdisk mirror for quicker access:
    - **Link:** [Baidu Netdisk](https://pan.baidu.com/s/11ITMTGO4KCnTLr05dnmThg?pwd=8rc9)
    - **Password:** `8rc9`
-3. Place the downloaded data under `data/MAMI/`.
+3. Place the downloaded data under `data/`.
 
 > Note:
 > We are actively maintaining and updating the Baidu Netdisk link. Some datasets may not be fully available yet.
